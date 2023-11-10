@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DE655BB2AFE03050026E4CD /* AddWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE655BA2AFE03050026E4CD /* AddWater.swift */; };
 		2DE931602AF959FE00BB3860 /* Drink_WaterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9315F2AF959FE00BB3860 /* Drink_WaterApp.swift */; };
 		2DE931622AF959FE00BB3860 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE931612AF959FE00BB3860 /* ContentView.swift */; };
 		2DE931642AF95A0000BB3860 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DE931632AF95A0000BB3860 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DE655BA2AFE03050026E4CD /* AddWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWater.swift; sourceTree = "<group>"; };
 		2DE9315C2AF959FE00BB3860 /* Drink Water.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drink Water.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE9315F2AF959FE00BB3860 /* Drink_WaterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink_WaterApp.swift; sourceTree = "<group>"; };
 		2DE931612AF959FE00BB3860 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -34,6 +36,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DE655B92AFE01C90026E4CD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2DE655BA2AFE03050026E4CD /* AddWater.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		2DE931532AF959FE00BB3860 = {
 			isa = PBXGroup;
 			children = (
@@ -53,6 +63,7 @@
 		2DE9315E2AF959FE00BB3860 /* Drink Water */ = {
 			isa = PBXGroup;
 			children = (
+				2DE655B92AFE01C90026E4CD /* Views */,
 				2DE9316D2AF95BEE00BB3860 /* Models */,
 				2DE9315F2AF959FE00BB3860 /* Drink_WaterApp.swift */,
 				2DE931612AF959FE00BB3860 /* ContentView.swift */,
@@ -149,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DE9316F2AF95C2700BB3860 /* Wave.swift in Sources */,
+				2DE655BB2AFE03050026E4CD /* AddWater.swift in Sources */,
 				2DE931622AF959FE00BB3860 /* ContentView.swift in Sources */,
 				2DE931602AF959FE00BB3860 /* Drink_WaterApp.swift in Sources */,
 			);
