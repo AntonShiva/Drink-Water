@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct AddWater: View {
+    // wave
     @State private var percet = 10.0
     @State private var waveOffset = Angle(degrees: 0)
     @State private var waveOffset2 = Angle(degrees: 180)
     
+    // picker
     var ml = [100, 150, 200, 250, 300]
     @State private var selectedML = 0
     @State private var waterCount = 0
+    
+    
+    // initializer of colors for the picker
+    init() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = #colorLiteral(red: 0.2642083466, green: 0.7893971801, blue: 1, alpha: 1)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+    }
     
     var body: some View {
         ZStack {
@@ -25,6 +35,8 @@ struct AddWater: View {
                 // Count label
                Text("\(waterCount) ml")
                     .padding()
+                    .foregroundStyle(Color.cyan)
+                    .font(.title)
                 
                 // MARK: Glass of water
                 ZStack(alignment: .center) {
@@ -51,28 +63,41 @@ struct AddWater: View {
                 Spacer()
                     .frame(height: 50)
                 
-                HStack {
-                    Picker(selection: $selectedML, label:
-                    Text("Choose ML")) {
-                        ForEach(ml, id: \.self) {
-                            Text("\($0) ml")
+                VStack {
+                    Text("Выбери порцию в мл.")
+                        .foregroundStyle(.cyan)
+                        .offset(CGSize(width: -40, height: 0))
+                        .font(.title3)
+                    HStack {
+                        Picker("", selection: $selectedML) {
+                            ForEach(ml, id: \.self) {
+                                Text("\($0)")
+                            }
+                           
                             
                         }
-                    
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    
-                    Button {
-                        percet += Double(selectedML) / 25
-                        waterCount += selectedML
-                    } label: {
-                        Image("glass1")
                         
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                       
-                    }
+                        .pickerStyle(PalettePickerStyle())
+                        .background(LinearGradient(gradient: Gradient(colors: [Color.cyan, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                        .cornerRadius(7)
+                        .frame(width: 200)
+                        
+                        Image(systemName: "plus")
+                            .foregroundStyle(.cyan)
+                            
+                        
+                        
+                        Button {
+                            percet += Double(selectedML) / 25
+                            waterCount += selectedML
+                        } label: {
+                            Image("glass1")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                           
+                        }
 
+                    }
                 }
             }
             .padding()
