@@ -18,6 +18,9 @@ struct AddWater: View {
     @State private var selectedML = 0
     @State private var waterCount = 0
     
+    // amount of water per day - daily rate
+    @State private var dailyRate = 1800
+    
     
     // initializer of colors for the picker
     init() {
@@ -98,6 +101,18 @@ struct AddWater: View {
                         }
 
                     }
+                    Spacer()
+                        .frame(height: 30)
+                    
+                    Button {
+                        
+                    } label: {
+                        Text("Установите дневную цель")
+                            .padding()
+                            .background(.cyan)
+                    }
+                    
+                    
                 }
             }
             .padding()
