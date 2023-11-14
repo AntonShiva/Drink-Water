@@ -21,6 +21,8 @@ struct AddWater: View {
     // amount of water per day - daily rate
     @State private var dailyRate = 1800
     
+    @State private var showingAlert = false
+    
     
     // initializer of colors for the picker
     init() {
@@ -33,10 +35,10 @@ struct AddWater: View {
         ZStack {
             Color.white
                 .ignoresSafeArea()
-         
+            
             VStack {
                 // Count label
-               Text("\(waterCount) ml")
+                Text("\(waterCount) ml")
                     .padding()
                     .foregroundStyle(Color.cyan)
                     .font(.title)
@@ -76,7 +78,7 @@ struct AddWater: View {
                             ForEach(ml, id: \.self) {
                                 Text("\($0)")
                             }
-                           
+                            
                             
                         }
                         
@@ -87,39 +89,64 @@ struct AddWater: View {
                         
                         Image(systemName: "plus")
                             .foregroundStyle(.cyan)
-                            
+                        
                         
                         
                         Button {
-                            percet += Double(selectedML) / 25
-                            waterCount += selectedML
+                            if waterCount < dailyRate {
+                                percet += Double(selectedML) / 25
+                                waterCount += selectedML
+                            }
                         } label: {
                             Image("glass1")
                                 .resizable()
                                 .frame(width: 50, height: 50)
-                           
+                            
                         }
-
+                        
                     }
                     Spacer()
                         .frame(height: 30)
                     
-                    Button {
+                    VStack {
+                        HStack {
+                            
+                            Button {
+                                if dailyRate > 0 {
+                                   dailyRate -= 100
+                                }
+                            } label: {
+                                Image(systemName: "minus.circle")
+                            }
+                            
+                            Text("\(dailyRate)")
+                            
+                            Button {
+                                if dailyRate < 3000 {
+                                   dailyRate += 100
+                                }
+                            } label: {
+                                Image(systemName: "plus.circle")
+                            }
+                        }
                         
-                    } label: {
-                        Text("Установите дневную цель")
-                            .padding()
-                            .background(.cyan)
+                        Button {
+                            
+                            
+                        } label: {
+                            Text("Save")
+                                .padding(20)
+                                .background(.cyan)
+                                .cornerRadius(20)
+                        }
                     }
-                    
-                    
                 }
-            }
-            .padding()
-            .onAppear {
-                withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
-                    self.waveOffset = Angle(degrees: 360)
-                    self.waveOffset2 = Angle(degrees: -180)
+                .padding()
+                .onAppear {
+                    withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
+                        self.waveOffset = Angle(degrees: 360)
+                        self.waveOffset2 = Angle(degrees: -180)
+                    }
                 }
             }
         }
