@@ -18,10 +18,10 @@ struct AddWater: View {
     @State private var selectedML = 0
     @State private var waterCount = 0
     
+   
     // amount of water per day - daily rate
     @State private var dailyRate = 1800
     
-    @State private var showingAlert = false
     
     
     // initializer of colors for the picker
@@ -66,17 +66,18 @@ struct AddWater: View {
                 //_____________________________________________
                 
                 Spacer()
-                    .frame(height: 50)
+                    .frame(height: 20)
                 
-                VStack {
+                VStack(alignment: .leading) {
                     Text("Выбери порцию в мл.")
                         .foregroundStyle(.cyan)
-                        .offset(CGSize(width: -40, height: 0))
                         .font(.title3)
                     HStack {
                         Picker("", selection: $selectedML) {
                             ForEach(ml, id: \.self) {
                                 Text("\($0)")
+                                    
+                                   
                             }
                             
                             
@@ -85,7 +86,7 @@ struct AddWater: View {
                         .pickerStyle(PalettePickerStyle())
                         .background(LinearGradient(gradient: Gradient(colors: [Color.cyan, Color.blue]), startPoint: .leading, endPoint: .trailing))
                         .cornerRadius(7)
-                        .frame(width: 200)
+                        .frame(width: 205)
                         
                         Image(systemName: "plus")
                             .foregroundStyle(.cyan)
@@ -94,21 +95,29 @@ struct AddWater: View {
                         
                         Button {
                             if waterCount < dailyRate {
-                                percet += Double(selectedML) / 25
-                                waterCount += selectedML
+                                
+                                   var chislo = dailyRate / selectedML
+                                    percet += Double(80 / chislo)
+                                    
+                                    
+                                    waterCount += selectedML
+                                
                             }
                         } label: {
                             Image("glass1")
                                 .resizable()
                                 .frame(width: 50, height: 50)
-                            
+                        }
                         }
                         
                     }
                     Spacer()
-                        .frame(height: 30)
+                        .frame(height: 10)
                     
-                    VStack {
+                    VStack(spacing: 20.0) {
+                        Text("Выбери свою дневную норму")
+                            .foregroundStyle(.cyan)
+                            .font(.title3)
                         HStack {
                             
                             Button {
@@ -117,9 +126,13 @@ struct AddWater: View {
                                 }
                             } label: {
                                 Image(systemName: "minus.circle")
+                                    .foregroundStyle(.cyan)
+                                    .font(.title)
                             }
                             
-                            Text("\(dailyRate)")
+                            Text("\(dailyRate) ml")
+                                .foregroundStyle(.cyan)
+                                .font(.title2)
                             
                             Button {
                                 if dailyRate < 3000 {
@@ -127,20 +140,15 @@ struct AddWater: View {
                                 }
                             } label: {
                                 Image(systemName: "plus.circle")
+                                    .foregroundStyle(.cyan)
+                                    .font(.title)
                             }
                         }
-                        
-                        Button {
-                            
-                            
-                        } label: {
-                            Text("Save")
-                                .padding(20)
-                                .background(.cyan)
-                                .cornerRadius(20)
-                        }
+                      
                     }
-                }
+                    .padding(.bottom)
+                    
+                
                 .padding()
                 .onAppear {
                     withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
