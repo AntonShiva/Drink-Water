@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddWater: View {
     // wave
-    @State private var percet = 10.0
+    @State private var percet = 0.0
     @State private var waveOffset = Angle(degrees: 0)
     @State private var waveOffset2 = Angle(degrees: 180)
     
@@ -49,6 +49,7 @@ struct AddWater: View {
                         .fill(Color.gray.opacity(0.1))
                         .frame(width: 300, height: 300)
                     
+                    
                     Wave(offset: Angle(degrees: self.waveOffset.degrees), percent: percet / 100.0)
                         .fill(Color.cyan)
                         .frame(width: 300, height: 300)
@@ -59,9 +60,13 @@ struct AddWater: View {
                         .frame(width: 300, height: 300)
                 }
                 .mask {
-                    Image("glass")
+                    Image("man")
                         .resizable()
-                        .offset(x: -30)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 295, height: 290)
+                        
+                        
+                        
                 }
                 //_____________________________________________
                 
@@ -73,10 +78,10 @@ struct AddWater: View {
                         .foregroundStyle(.cyan)
                         .font(.title3)
                     HStack {
-                        Picker("", selection: $selectedML) {
+                        Picker("Picker", selection: $selectedML) {
                             ForEach(ml, id: \.self) {
                                 Text("\($0)")
-                                    
+                                   
                                    
                             }
                             
@@ -95,9 +100,9 @@ struct AddWater: View {
                         
                         Button {
                             if waterCount < dailyRate {
-                                
-                                   var chislo = dailyRate / selectedML
-                                    percet += Double(80 / chislo)
+                              
+                                    let chislo = dailyRate / selectedML
+                                    percet += Double(100 / chislo)
                                     
                                     
                                     waterCount += selectedML
