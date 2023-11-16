@@ -20,7 +20,7 @@ struct Wave :Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         
-        let waveHeight = 0.015 * rect.height
+        let waveHeight = 0.010 * rect.height
         let yOffset = CGFloat(1 - percent) * (rect.height - 4 * waveHeight) + 2 * waveHeight
         let startAngle = offset
         let endAngle = offset + Angle(degrees: 360)
