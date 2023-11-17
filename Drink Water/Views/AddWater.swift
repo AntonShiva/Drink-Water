@@ -33,7 +33,7 @@ struct AddWater: View {
     
     var body: some View {
         ZStack {
-            Color.white
+            Color.background
                 .ignoresSafeArea()
             
             VStack {
@@ -46,7 +46,7 @@ struct AddWater: View {
                 // MARK: Man and wave
                 ZStack(alignment: .center) {
                     Rectangle()
-                        .fill(Color.cyan.opacity(0.35))
+                        .fill(Color.manColor.opacity(0.8))
                         .frame(width: 300, height: 400)
                     
                     
@@ -54,24 +54,24 @@ struct AddWater: View {
                     Wave(offset: Angle(degrees: self.waveOffset.degrees), percent: percet / 95.0)
                         .fill(Color.cyan)
                         .frame(width: 300, height: 410)
-                        .offset(x: 0, y: 8)
+                        .offset(x: -30, y: 8)
                     
                     Wave(offset: Angle(degrees: self.waveOffset2.degrees), percent: percet / 95.0)
                         .fill(Color.cyan)
                         .opacity(0.5)
                         .frame(width: 300, height: 410)
-                        .offset(x: 0, y: 8)
+                        .offset(x: 5, y: 8)
                 }
                 .mask {
                     Image("man")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 300, height: 400)
-                    
+                       
                     
                     
                 }
-                .padding()
+//                .padding()
                 .onAppear {
                     withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
                         self.waveOffset = Angle(degrees: 360)
@@ -85,10 +85,11 @@ struct AddWater: View {
                     .frame(height: 20)
                 
                 HStack {
-                    VStack(alignment: .leading) {
-                        Text(" Выбери порцию в мл")
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Выбери порцию в мл.")
                             .foregroundStyle(.cyan)
-                            .font(.system(size: 18))
+                            .font(.system(size: 19))
+                            .frame(width: 200.0)
                         
                         Picker("Picker", selection: $selectedML) {
                             ForEach(ml, id: \.self) {
@@ -100,6 +101,8 @@ struct AddWater: View {
                         .cornerRadius(7)
                         .frame(width: 205)
                     }
+                    
+                    
                     HStack {
                         Image(systemName: "plus")
                             .foregroundStyle(.cyan)
@@ -114,22 +117,26 @@ struct AddWater: View {
                             Image("glass1")
                                 .resizable()
                                 .frame(width: 50, height: 50)
+                            
+                            
                         }
                     }
+                    
                 }
                 .padding()
+                .frame(width: 320.0, height: 80)
                 .overlay(
                   RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.cyan, lineWidth: 2)
                 )
                 
                 Spacer()
-                    .frame(height: 10)
+                    .frame(height: 25)
                 
-                VStack(spacing: 10.0) {
+                VStack(spacing: 5.0) {
                     Text("Выбери свою дневную норму")
                         .foregroundStyle(.cyan)
-                        .font(.title3)
+                        .font(.system(size: 18))
                     HStack {
                         
                         Button {
@@ -139,12 +146,12 @@ struct AddWater: View {
                         } label: {
                             Image(systemName: "minus.circle")
                                 .foregroundStyle(.cyan)
-                                .font(.title)
+                                .font(.system(size: 30))
                         }
                         
                         Text("\(dailyRate) ml")
                             .foregroundStyle(.cyan)
-                            .font(.title2)
+                            .font(.system(size: 28))
                         
                         Button {
                             if dailyRate < 3000 {
@@ -153,12 +160,13 @@ struct AddWater: View {
                         } label: {
                             Image(systemName: "plus.circle")
                                 .foregroundStyle(.cyan)
-                                .font(.title)
+                                .font(.system(size: 30))
                         }
                     }
                     
                 }
                 .padding()
+                .frame(width: 320.0, height: 80)
                 .overlay(
                   RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.cyan, lineWidth: 2)

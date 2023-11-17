@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DD462EA2B0676AE00107F59 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD462E92B0676AE00107F59 /* Extensions.swift */; };
 		2DE655BB2AFE03050026E4CD /* AddWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE655BA2AFE03050026E4CD /* AddWater.swift */; };
 		2DE931602AF959FE00BB3860 /* Drink_WaterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9315F2AF959FE00BB3860 /* Drink_WaterApp.swift */; };
 		2DE931622AF959FE00BB3860 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE931612AF959FE00BB3860 /* ContentView.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DD462E92B0676AE00107F59 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2DE655BA2AFE03050026E4CD /* AddWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWater.swift; sourceTree = "<group>"; };
 		2DE9315C2AF959FE00BB3860 /* Drink Water.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drink Water.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE9315F2AF959FE00BB3860 /* Drink_WaterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink_WaterApp.swift; sourceTree = "<group>"; };
@@ -36,6 +38,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DD462E82B06769100107F59 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2DD462E92B0676AE00107F59 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		2DE655B92AFE01C90026E4CD /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +73,7 @@
 		2DE9315E2AF959FE00BB3860 /* Drink Water */ = {
 			isa = PBXGroup;
 			children = (
+				2DD462E82B06769100107F59 /* Utils */,
 				2DE655B92AFE01C90026E4CD /* Views */,
 				2DE9316D2AF95BEE00BB3860 /* Models */,
 				2DE9315F2AF959FE00BB3860 /* Drink_WaterApp.swift */,
@@ -159,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DD462EA2B0676AE00107F59 /* Extensions.swift in Sources */,
 				2DE9316F2AF95C2700BB3860 /* Wave.swift in Sources */,
 				2DE655BB2AFE03050026E4CD /* AddWater.swift in Sources */,
 				2DE931622AF959FE00BB3860 /* ContentView.swift in Sources */,
