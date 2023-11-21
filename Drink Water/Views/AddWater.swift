@@ -63,42 +63,43 @@ struct AddWater: View {
                         .foregroundStyle(Color.cyan)
                         .font(.title)
                     
-                    // MARK: Man and wave
-                    ZStack(alignment: .center) {
-                        Rectangle()
-                            .fill(Color.manColor.opacity(0.8))
-                            .frame(width: 300, height: 400)
+                    //             MARK: Man and wave
+                    VStack {
+                        ZStack(alignment: .center) {
+                            Rectangle()
+                                .fill(Color.manColor.opacity(0.8))
+                                .frame(width: 300, height: 400)
+                            
+                            
+                            
+                            Wave(offset: Angle(degrees: self.waveOffset.degrees), percent: percet / 95.0)
+                                .fill(Color.cyan)
+                                .frame(width: 300, height: 410)
+                                .offset(x: -30, y: 8)
+                            
+                            Wave(offset: Angle(degrees: self.waveOffset2.degrees), percent: percet / 95.0)
+                                .fill(Color.cyan)
+                                .opacity(0.5)
+                                .frame(width: 300, height: 410)
+                                .offset(x: 5, y: 8)
+                        }
+                        .mask {
+                            Image("man")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 300, height: 400)
+                            
+                            
+                            
+                        }
                         
-                        
-                        
-                        Wave(offset: Angle(degrees: self.waveOffset.degrees), percent: percet / 95.0)
-                            .fill(Color.cyan)
-                            .frame(width: 300, height: 410)
-                            .offset(x: -30, y: 8)
-                        
-                        Wave(offset: Angle(degrees: self.waveOffset2.degrees), percent: percet / 95.0)
-                            .fill(Color.cyan)
-                            .opacity(0.5)
-                            .frame(width: 300, height: 410)
-                            .offset(x: 5, y: 8)
-                    }
-                    .mask {
-                        Image("man")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 300, height: 400)
-                           
-                        
-                        
-                    }
-    //                .padding()
-                    .onAppear {
-                        withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
-                            self.waveOffset = Angle(degrees: 360)
-                            self.waveOffset2 = Angle(degrees: -180)
+                        .onAppear {
+                            withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
+                                self.waveOffset = Angle(degrees: 360)
+                                self.waveOffset2 = Angle(degrees: -180)
+                            }
                         }
                     }
-                    
                     //_____________________________________________
                     
                     Spacer()

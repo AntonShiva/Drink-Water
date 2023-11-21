@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D276B952B0CB909001154D0 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D276B942B0CB909001154D0 /* NotificationHandler.swift */; };
 		2DD462EA2B0676AE00107F59 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD462E92B0676AE00107F59 /* Extensions.swift */; };
 		2DD462EC2B076CBF00107F59 /* Reminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD462EB2B076CBF00107F59 /* Reminders.swift */; };
 		2DE655BB2AFE03050026E4CD /* AddWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE655BA2AFE03050026E4CD /* AddWater.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D276B942B0CB909001154D0 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		2DD462E92B0676AE00107F59 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2DD462EB2B076CBF00107F59 /* Reminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminders.swift; sourceTree = "<group>"; };
 		2DE655BA2AFE03050026E4CD /* AddWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWater.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			children = (
 				2DE655BA2AFE03050026E4CD /* AddWater.swift */,
 				2DD462EB2B076CBF00107F59 /* Reminders.swift */,
+				2DE931612AF959FE00BB3860 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -76,11 +79,10 @@
 		2DE9315E2AF959FE00BB3860 /* Drink Water */ = {
 			isa = PBXGroup;
 			children = (
-				2DD462E82B06769100107F59 /* Utils */,
+				2DE9315F2AF959FE00BB3860 /* Drink_WaterApp.swift */,
 				2DE655B92AFE01C90026E4CD /* Views */,
 				2DE9316D2AF95BEE00BB3860 /* Models */,
-				2DE9315F2AF959FE00BB3860 /* Drink_WaterApp.swift */,
-				2DE931612AF959FE00BB3860 /* ContentView.swift */,
+				2DD462E82B06769100107F59 /* Utils */,
 				2DE931632AF95A0000BB3860 /* Assets.xcassets */,
 				2DE931652AF95A0000BB3860 /* Preview Content */,
 			);
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				2DE9316E2AF95C2700BB3860 /* Wave.swift */,
+				2D276B942B0CB909001154D0 /* NotificationHandler.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			files = (
 				2DD462EA2B0676AE00107F59 /* Extensions.swift in Sources */,
 				2DE9316F2AF95C2700BB3860 /* Wave.swift in Sources */,
+				2D276B952B0CB909001154D0 /* NotificationHandler.swift in Sources */,
 				2DE655BB2AFE03050026E4CD /* AddWater.swift in Sources */,
 				2DD462EC2B076CBF00107F59 /* Reminders.swift in Sources */,
 				2DE931622AF959FE00BB3860 /* ContentView.swift in Sources */,
