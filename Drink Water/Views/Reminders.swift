@@ -11,7 +11,10 @@ struct Reminders: View {
     @State private var remindersOn = true
     @State private var soundOn = true
     
+    let notify = NotificationHandler()
+    
     var body: some View {
+        
         ZStack {
             Color.background
                 .ignoresSafeArea()
@@ -47,24 +50,39 @@ struct Reminders: View {
                 )
                 
                 HStack {
-                    Button {
-                        
-                    } label: {
+                    
+                    NavigationLink(destination: AddReminders()) {
                         Text("Добавить напоминание")
                             .foregroundStyle(.cyan)
                             .font(.system(size: 20))
                         Image(systemName: "plus.circle")
                             .foregroundStyle(.cyan)
                             .font(.system(size: 25))
+                        
+                        
                     }
                     .padding()
                     .frame(width: 350.0, height: 50)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.cyan, lineWidth: 2)
-                    )                }
-               
+                    )               
+                }
+                
                 Spacer()
+                Text("Если не работает")
+                    .foregroundStyle(.cyan)
+                    .italic()
+                
+                Image(systemName: "arrow.down")
+                    .foregroundStyle(.cyan)
+                
+                Button {
+                    notify.askPermission()
+                } label: {
+                    Text("Включить разрешение")
+                        .foregroundStyle(.cyan)
+                }
             }
         }
     }

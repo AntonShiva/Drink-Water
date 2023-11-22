@@ -48,10 +48,7 @@ struct AddWater: View {
                                                     .foregroundStyle(.cyan)
                                                     .font(.system(size: 30))
                         }
-                        
-                        
-                            
-                            
+                          
                     }
                     .padding(.horizontal, 20.0)
                     .frame(maxWidth: .infinity)
