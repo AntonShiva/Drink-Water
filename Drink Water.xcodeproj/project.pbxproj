@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D276B952B0CB909001154D0 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D276B942B0CB909001154D0 /* NotificationHandler.swift */; };
 		2D276B9E2B0E13A9001154D0 /* AddReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D276B9D2B0E13A9001154D0 /* AddReminders.swift */; };
-		2D276BA02B0E6CE2001154D0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D276B9F2B0E6CE2001154D0 /* Alert.swift */; };
+		2D276BA32B0E703C001154D0 /* CustomAlert in Frameworks */ = {isa = PBXBuildFile; productRef = 2D276BA22B0E703C001154D0 /* CustomAlert */; };
 		2DD462EA2B0676AE00107F59 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD462E92B0676AE00107F59 /* Extensions.swift */; };
 		2DD462EC2B076CBF00107F59 /* Reminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD462EB2B076CBF00107F59 /* Reminders.swift */; };
 		2DE655BB2AFE03050026E4CD /* AddWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE655BA2AFE03050026E4CD /* AddWater.swift */; };
@@ -23,7 +23,6 @@
 /* Begin PBXFileReference section */
 		2D276B942B0CB909001154D0 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		2D276B9D2B0E13A9001154D0 /* AddReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReminders.swift; sourceTree = "<group>"; };
-		2D276B9F2B0E6CE2001154D0 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		2DD462E92B0676AE00107F59 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2DD462EB2B076CBF00107F59 /* Reminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminders.swift; sourceTree = "<group>"; };
 		2DE655BA2AFE03050026E4CD /* AddWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWater.swift; sourceTree = "<group>"; };
@@ -40,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D276BA32B0E703C001154D0 /* CustomAlert in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +61,6 @@
 				2DD462EB2B076CBF00107F59 /* Reminders.swift */,
 				2DE931612AF959FE00BB3860 /* ContentView.swift */,
 				2D276B9D2B0E13A9001154D0 /* AddReminders.swift */,
-				2D276B9F2B0E6CE2001154D0 /* Alert.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -128,6 +127,9 @@
 			dependencies = (
 			);
 			name = "Drink Water";
+			packageProductDependencies = (
+				2D276BA22B0E703C001154D0 /* CustomAlert */,
+			);
 			productName = "Drink Water";
 			productReference = 2DE9315C2AF959FE00BB3860 /* Drink Water.app */;
 			productType = "com.apple.product-type.application";
@@ -156,6 +158,9 @@
 				Base,
 			);
 			mainGroup = 2DE931532AF959FE00BB3860;
+			packageReferences = (
+				2D276BA12B0E703C001154D0 /* XCRemoteSwiftPackageReference "CustomAlert" */,
+			);
 			productRefGroup = 2DE9315D2AF959FE00BB3860 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -182,7 +187,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D276BA02B0E6CE2001154D0 /* Alert.swift in Sources */,
 				2DD462EA2B0676AE00107F59 /* Extensions.swift in Sources */,
 				2DE9316F2AF95C2700BB3860 /* Wave.swift in Sources */,
 				2D276B952B0CB909001154D0 /* NotificationHandler.swift in Sources */,
@@ -402,6 +406,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2D276BA12B0E703C001154D0 /* XCRemoteSwiftPackageReference "CustomAlert" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/divadretlaw/CustomAlert.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2D276BA22B0E703C001154D0 /* CustomAlert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D276BA12B0E703C001154D0 /* XCRemoteSwiftPackageReference "CustomAlert" */;
+			productName = CustomAlert;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2DE931542AF959FE00BB3860 /* Project object */;
 }
