@@ -7,14 +7,18 @@
 
 import SwiftUI
 import CustomAlert
+import UserNotifications
+
 struct Reminders: View {
     @State private var remindersOn = true
     @State private var soundOn = true
     
-    let notify = NotificationHandler()
+    
+    
+    @State private var notify = NotificationHandler()
     
     @State private var showFancy = false
-    @State var selectedDate = Date()
+   @State var selectedDate = Date()
     
     var body: some View {
         
@@ -92,7 +96,7 @@ struct Reminders: View {
                             
                                 .background(LinearGradient(gradient: Gradient(colors: [Color.cyan, Color.vtoroi]), startPoint: .top, endPoint: .bottom))
                                 .colorScheme(.dark)
-            //                    .accentColor(.white)
+          
                                 .datePickerStyle(.wheel)
                                 .labelsHidden()
                                 .cornerRadius(50)
@@ -103,8 +107,6 @@ struct Reminders: View {
                                 .cornerRadius(50)
          
                         }
-                       
-                        
                         .background(Color.cyan)
                         .cornerRadius(10)
                     } actions: {
@@ -118,7 +120,13 @@ struct Reminders: View {
                            
                             
                             Button {
-                                
+                                   notify.sendNotification(
+                                    date: selectedDate,
+                                    type: "date",
+                                   
+                                    title: "привет",
+                                    body: "пора пить воду")
+                                print("\(selectedDate)")
                             } label: {
                                 Text("Сохранить")
                                     .font(.title2)

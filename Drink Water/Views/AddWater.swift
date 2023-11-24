@@ -39,16 +39,16 @@ struct AddWater: View {
                 
                 VStack {
                     HStack() {
-                      
+                        
                         Spacer()
                         
                         NavigationLink(destination: Reminders()) {
-                      
+                            
                             Image(systemName: "alarm.waves.left.and.right.fill")
-                                                    .foregroundStyle(.cyan)
-                                                    .font(.system(size: 30))
+                                .foregroundStyle(.cyan)
+                                .font(.system(size: 30))
                         }
-                          
+                        
                     }
                     .padding(.horizontal, 20.0)
                     .frame(maxWidth: .infinity)
@@ -61,6 +61,7 @@ struct AddWater: View {
                         .font(.title)
                     
                     //             MARK: Man and wave
+                    
                     VStack {
                         ZStack(alignment: .center) {
                             Rectangle()
@@ -80,22 +81,22 @@ struct AddWater: View {
                                 .frame(width: 300, height: 410)
                                 .offset(x: 5, y: 8)
                         }
+                        .onAppear {
+                            withAnimation(Animation.linear(duration: 1).repeatForever(autoreverses: false)) {
+                                self.waveOffset = Angle(degrees: 360)
+                                self.waveOffset2 = Angle(degrees: -180)
+                            }
+                        }
+                        
                         .mask {
                             Image("man")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 300, height: 400)
                             
-                            
-                            
                         }
                         
-                        .onAppear {
-                            withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
-                                self.waveOffset = Angle(degrees: 360)
-                                self.waveOffset2 = Angle(degrees: -180)
-                            }
-                        }
+                        
                     }
                     //_____________________________________________
                     
@@ -144,8 +145,8 @@ struct AddWater: View {
                     .padding()
                     .frame(width: 320.0, height: 80)
                     .overlay(
-                      RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.cyan, lineWidth: 2)
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.cyan, lineWidth: 2)
                     )
                     
                     Spacer()
@@ -186,8 +187,8 @@ struct AddWater: View {
                     .padding()
                     .frame(width: 320.0, height: 80)
                     .overlay(
-                      RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.cyan, lineWidth: 2)
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.cyan, lineWidth: 2)
                     )
                     
                     
