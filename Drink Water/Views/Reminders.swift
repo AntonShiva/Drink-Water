@@ -9,16 +9,20 @@ import SwiftUI
 import CustomAlert
 import UserNotifications
 
+
+
 struct Reminders: View {
     @State private var remindersOn = true
     @State private var soundOn = true
     
-    
+    @State private var isOn = true
     
     @State private var notify = NotificationHandler()
     
     @State private var showFancy = false
-   @State var selectedDate = Date()
+    @State var selectedDate = Date()
+    
+    @State var massivVremeni = ["12:00"]
     
     var body: some View {
         
@@ -83,11 +87,11 @@ struct Reminders: View {
                                     .frame(width: 50, height: 50)
                                     .clipShape(Circle())
                                 
-                               Image(systemName: "alarm")
+                                Image(systemName: "alarm")
                                     .foregroundStyle(.svetloCyan)
                                     .font(.system(size: 28))
                             }
-                                Text("Выберите время")
+                            Text("Выберите время")
                                 .font(.title2)
                                 .padding(.bottom, 10.0)
                                 .foregroundStyle(.svetloCyan)
@@ -96,7 +100,7 @@ struct Reminders: View {
                             
                                 .background(LinearGradient(gradient: Gradient(colors: [Color.cyan, Color.vtoroi]), startPoint: .top, endPoint: .bottom))
                                 .colorScheme(.dark)
-          
+                            
                                 .datePickerStyle(.wheel)
                                 .labelsHidden()
                                 .cornerRadius(50)
@@ -105,7 +109,7 @@ struct Reminders: View {
                             
                                 .padding()
                                 .cornerRadius(50)
-         
+                            
                         }
                         .background(Color.cyan)
                         .cornerRadius(10)
@@ -117,16 +121,30 @@ struct Reminders: View {
                                 Text("Отменить")
                                     .font(.title2)
                             }
-                           
+                            
                             
                             Button {
-                                   notify.sendNotification(
+                                // add notify
+                                notify.sendNotification(
                                     date: selectedDate,
                                     type: "date",
-                                   
                                     title: "привет",
                                     body: "пора пить воду")
-                                print("\(selectedDate)")
+                                
+                                // получение часов и минут из даты
+                                let stringDate = selectedDate
+                                let dateString2 = String("\(stringDate)")
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
+                                dateFormatter.locale = Locale.init(identifier: "en_US_POSIX")
+                                let dateObj = dateFormatter.date(from: dateString2)
+                                dateFormatter.dateFormat = "HH:mm"
+                                let vremia = dateFormatter.string(from: dateObj!)
+                                massivVremeni.append(vremia)
+                                print("\(massivVremeni)")
+                                
+                                
+                                
                             } label: {
                                 Text("Сохранить")
                                     .font(.title2)
@@ -142,8 +160,8 @@ struct Reminders: View {
                             alert.cornerRadius = 20
                             alert.padding = EdgeInsets(top: 10, leading: 20, bottom: 20, trailing: 20)
                             alert.minWidth = 300
-            //                alert.titleFont = .headline
-            //                alert.contentFont = .subheadline
+                            //                alert.titleFont = .headline
+                            //                alert.contentFont = .subheadline
                             alert.alignment = .leading
                             alert.spacing = 10
                         }
@@ -156,25 +174,76 @@ struct Reminders: View {
                     })
                 }
                 
-                Spacer()
-                Text("Если не работает")
-                    .foregroundStyle(.cyan)
-                    .italic()
-                
-                Image(systemName: "arrow.down")
-                    .foregroundStyle(.cyan)
-                
-                Button {
-                    notify.askPermission()
-                } label: {
-                    Text("Включить разрешение")
-                        .foregroundStyle(.cyan)
-                }
-            }
-        }
-    }
-}
+                // список напоминаний
+                VStack {
+                    List {
+                        
+                        ForEach(massivVremeni.sorted(), id: \.self) { item in
+                            
+                            Toggle(" \(item)", isOn: $isOn)
+                                .padding(.trailing, 10.0)
+                                .padding(9)
+                                .foregroundStyle(.cyan)
+                            
+                                .swipeActions(edge: .trailing) {
+                                                            Button {
+                                                                if let index = massivVremeni.firstIndex(of: item) {
+                                                                           massivVremeni.remove(at: index)
+                                                                       }
+                                                               
+                                                            } label: {
+                                                                Text("Удалить")
+                                                            }
+                                                            .tint(.cyan)
+                                                        }
 
-#Preview {
-    Reminders()
-}
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.cyan, lineWidth: 2)
+                                )
+                                .frame(width: 350.0, height: 40)
+                        }
+                        
+                        
+
+                       
+                                   
+
+                                .padding(.top, 1.0)
+                                .tint(.cyan)
+                                   
+                                .listRowBackground(Color.clear)
+                                .listRowSeparator(.hidden)
+                                   }
+                                   
+                                   
+                                .scrollContentBackground(.hidden)
+                                   
+                                   
+                                   Spacer()
+                                   Text("Если не работает")
+                                .foregroundStyle(.cyan)
+                                .italic()
+                                   
+                                   Image(systemName: "arrow.down")
+                                .foregroundStyle(.cyan)
+                                   
+                                   Button {
+                                notify.askPermission()
+                            } label: {
+                                Text("Включить разрешение")
+                                    .foregroundStyle(.cyan)
+                            }
+                                   }
+                                   
+                                   }
+                                   }
+                                   }
+                                   private func deleteItem(at offsets: IndexSet) {
+                                massivVremeni.remove(atOffsets: offsets)
+                            }
+                                   }
+                                   
+                                   #Preview {
+                                Reminders()
+                            }
