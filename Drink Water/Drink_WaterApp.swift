@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct Drink_WaterApp: App {
+    @StateObject var lnManager = LocalNotificationManager()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(lnManager)
+
         }
     }
 }

@@ -20,16 +20,14 @@ class NotificationHandler {
         }
     }
     
-    func sendNotification(date: Date, type: String, timeInterval: Double = 10,  title: String, body: String) {
+    func sendNotification(date: Date, type: String, identifier: String,  title: String, body: String) {
         var trigger: UNNotificationTrigger?
         
         // Create a trigger (either from date or time based)
         if type == "date" {
             let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: date)
-            trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        } else if type == "time" {
-            trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
-        }
+            trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        } 
         
         // Customise the content
         let content = UNMutableNotificationContent()

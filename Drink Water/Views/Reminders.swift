@@ -10,8 +10,10 @@ import CustomAlert
 import UserNotifications
 
 
-
 struct Reminders: View {
+    @EnvironmentObject var lnManager: LocalNotificationManager
+    @Environment(\.scenePhase) var scenePhase
+    
     @State private var remindersOn = true
     @State private var soundOn = true
     
@@ -31,7 +33,7 @@ struct Reminders: View {
                 .ignoresSafeArea()
             
             VStack {
-                
+                if lnManager.isGranted {
                 Text("Напоминания")
                     .padding(.vertical, 8.0)
                     .foregroundStyle(.cyan)
@@ -127,7 +129,8 @@ struct Reminders: View {
                                 // add notify
                                 notify.sendNotification(
                                     date: selectedDate,
-                                    type: "date",
+                                    type: "date", 
+                                    identifier: UUID().uuidString,
                                     title: "привет",
                                     body: "пора пить воду")
                                 
@@ -178,25 +181,25 @@ struct Reminders: View {
                 VStack {
                     List {
                         
-                        ForEach(massivVremeni.sorted(), id: \.self) { item in
+                        ForEach(massivVremeni.sorted() , id: \.self) { item in
                             
-                            Toggle(" \(item)", isOn: $isOn)
+                            Toggle(item, isOn: $isOn)
                                 .padding(.trailing, 10.0)
                                 .padding(9)
                                 .foregroundStyle(.cyan)
                             
                                 .swipeActions(edge: .trailing) {
-                                                            Button {
-                                                                if let index = massivVremeni.firstIndex(of: item) {
-                                                                           massivVremeni.remove(at: index)
-                                                                       }
-                                                               
-                                                            } label: {
-                                                                Text("Удалить")
-                                                            }
-                                                            .tint(.cyan)
-                                                        }
-
+                                    Button {
+                                        if let index = massivVremeni.firstIndex(of: item) {
+                                            massivVremeni.remove(at: index)
+                                        }
+                                        
+                                    } label: {
+                                        Text("Удалить")
+                                    }
+                                    .tint(.cyan)
+                                }
+                            
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color.cyan, lineWidth: 2)
@@ -205,45 +208,73 @@ struct Reminders: View {
                         }
                         
                         
+                        
+                        
+                        
+                        
+                        .padding(.top, 1.0)
+                        .tint(.cyan)
+                        
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
+                    }
+                    
+                    
+                    .scrollContentBackground(.hidden)
+                    
+                    
+                    Spacer()
+                    
 
+                   
+                }
+                } else {
+                    
+                    VStack {
+                        
+                        Button {
+                            lnManager.openSettings()
+                        } label: {
+                            Text("Разрешить уведомления")
+                                .foregroundStyle(.cyan)
+                                .font(.system(size: 20))
+                            
+                            
+                        }
                        
-                                   
+                        .frame(width: 350.0, height: 50)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.cyan, lineWidth: 2)
+                    )
+                        .padding(70)
+                        Spacer()
+                    }
+                    
+                                      
+                                   }
+                
+                
+            }
+           
+            .task {
+                try? await lnManager.requestAuthorization()
+            }
+            .onChange(of: scenePhase) { newValue in
+                if newValue == .active {
+                    Task {
+                        await lnManager.getCurrentSettings()
+                    }
+                }
+            }
+        }
+    }
+    private func deleteItem(at offsets: IndexSet) {
+        massivVremeni.remove(atOffsets: offsets)
+    }
+}
 
-                                .padding(.top, 1.0)
-                                .tint(.cyan)
-                                   
-                                .listRowBackground(Color.clear)
-                                .listRowSeparator(.hidden)
-                                   }
-                                   
-                                   
-                                .scrollContentBackground(.hidden)
-                                   
-                                   
-                                   Spacer()
-                                   Text("Если не работает")
-                                .foregroundStyle(.cyan)
-                                .italic()
-                                   
-                                   Image(systemName: "arrow.down")
-                                .foregroundStyle(.cyan)
-                                   
-                                   Button {
-                                notify.askPermission()
-                            } label: {
-                                Text("Включить разрешение")
-                                    .foregroundStyle(.cyan)
-                            }
-                                   }
-                                   
-                                   }
-                                   }
-                                   }
-                                   private func deleteItem(at offsets: IndexSet) {
-                                massivVremeni.remove(atOffsets: offsets)
-                            }
-                                   }
-                                   
-                                   #Preview {
-                                Reminders()
-                            }
+#Preview {
+    Reminders()
+        .environmentObject(LocalNotificationManager())
+}
