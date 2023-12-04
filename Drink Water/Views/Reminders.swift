@@ -13,18 +13,19 @@ import UserNotifications
 struct Reminders: View {
     @EnvironmentObject var lnManager: LocalNotificationManager
     @Environment(\.scenePhase) var scenePhase
+    @State private var scheduleDate = Date()
     
     @State private var remindersOn = true
     @State private var soundOn = true
     
     @State private var isOn = true
     
-    @State private var notify = NotificationHandler()
+
     
     @State private var showFancy = false
     @State var selectedDate = Date()
     
-    @State var massivVremeni = ["12:00"]
+   
     
     var body: some View {
         
@@ -98,7 +99,7 @@ struct Reminders: View {
                                 .padding(.bottom, 10.0)
                                 .foregroundStyle(.svetloCyan)
                             
-                            DatePicker("", selection: $selectedDate, displayedComponents: .hourAndMinute)
+                            DatePicker("", selection: $scheduleDate, displayedComponents: .hourAndMinute)
                             
                                 .background(LinearGradient(gradient: Gradient(colors: [Color.cyan, Color.vtoroi]), startPoint: .top, endPoint: .bottom))
                                 .colorScheme(.dark)
@@ -127,24 +128,48 @@ struct Reminders: View {
                             
                             Button {
                                 // add notify
-                                notify.sendNotification(
-                                    date: selectedDate,
-                                    type: "date", 
-                                    identifier: UUID().uuidString,
-                                    title: "привет",
-                                    body: "пора пить воду")
+//                                notify.sendNotification(
+//                                    date: scheduleDate,
+//                                    type: "date",
+//                                    identifier: UUID().uuidString,
+//                                    title: "привет",
+//                                    body: "пора пить воду")
                                 
-                                // получение часов и минут из даты
-                                let stringDate = selectedDate
-                                let dateString2 = String("\(stringDate)")
-                                let dateFormatter = DateFormatter()
-                                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
-                                dateFormatter.locale = Locale.init(identifier: "en_US_POSIX")
-                                let dateObj = dateFormatter.date(from: dateString2)
-                                dateFormatter.dateFormat = "HH:mm"
-                                let vremia = dateFormatter.string(from: dateObj!)
-                                massivVremeni.append(vremia)
-                                print("\(massivVremeni)")
+                                Task {
+                                    
+                                    // получение времение из dateComponents
+                                    let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: scheduleDate)
+                                    let stringDate = scheduleDate
+                                    let dateString2 = String("\(stringDate)")
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
+                                    dateFormatter.locale = Locale.init(identifier: "en_US_POSIX")
+                                    let dateObj = dateFormatter.date(from: dateString2)
+                                    dateFormatter.dateFormat = "HH:mm"
+                                    let vremia = dateFormatter.string(from: dateObj!)
+                                    print(dateString2)
+                                    print(vremia)
+//                                    _____________________________________________
+                                    // Создане напроминания
+                                let localNotification = LocalNotification(identifier: UUID().uuidString,
+                                                                          title: "Пора пить воду!",
+                                                                          body: vremia,
+                                                                          dateComponents: dateComponents,
+                                                                          repeats: false)
+                                    await lnManager.schedule(localNotification: localNotification)
+                                }
+                                
+//                                // получение часов и минут из даты
+//                                let stringDate = scheduleDate
+//                                let dateString2 = String("\(stringDate)")
+//                                let dateFormatter = DateFormatter()
+//                                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
+//                                dateFormatter.locale = Locale.init(identifier: "en_US_POSIX")
+//                                let dateObj = dateFormatter.date(from: dateString2)
+//                                dateFormatter.dateFormat = "HH:mm"
+//                                let vremia = dateFormatter.string(from: dateObj!)
+//                                massivVremeni.append(vremia)
+//                                print("\(massivVremeni)")
                                 
                                 
                                 
@@ -181,18 +206,23 @@ struct Reminders: View {
                 VStack {
                     List {
                         
-                        ForEach(massivVremeni.sorted() , id: \.self) { item in
+                        ForEach(lnManager.pendingRequests.sorted(by: { $0.content.body < $1.content.body }), id: \.identifier) { request in
                             
-                            Toggle(item, isOn: $isOn)
+                            Toggle(isOn: $isOn) {
+                                Text(request.content.body)
+
+                                
+                            }
                                 .padding(.trailing, 10.0)
                                 .padding(9)
                                 .foregroundStyle(.cyan)
                             
                                 .swipeActions(edge: .trailing) {
                                     Button {
-                                        if let index = massivVremeni.firstIndex(of: item) {
-                                            massivVremeni.remove(at: index)
-                                        }
+                                        
+                                            lnManager.removeRequest(withIdentifier: request.identifier)
+                                       
+
                                         
                                     } label: {
                                         Text("Удалить")
@@ -257,21 +287,17 @@ struct Reminders: View {
                 
             }
            
-            .task {
-                try? await lnManager.requestAuthorization()
-            }
+          
             .onChange(of: scenePhase) { newValue in
                 if newValue == .active {
                     Task {
                         await lnManager.getCurrentSettings()
+                        await lnManager.getPendingRequests()
                     }
                 }
-            }
-        }
+            }        }
     }
-    private func deleteItem(at offsets: IndexSet) {
-        massivVremeni.remove(atOffsets: offsets)
-    }
+  
 }
 
 #Preview {
