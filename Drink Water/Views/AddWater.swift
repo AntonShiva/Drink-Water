@@ -13,11 +13,14 @@ struct AddWater: View {
     @State private var waveOffset = Angle(degrees: 0)
     @State private var waveOffset2 = Angle(degrees: 180)
     
+    @State private var showReminders = false
+    
     // picker
     var ml = [100, 150, 200, 250, 300]
     @State private var selectedML = 200
     @State private var waterCount = 0
     
+    @State private var isPresented = false
     
     // amount of water per day - daily rate
     @State private var dailyRate = 1800
@@ -32,7 +35,7 @@ struct AddWater: View {
     }
     
     var body: some View {
-        NavigationView {
+        
             ZStack {
                 Color.background
                     .ignoresSafeArea()
@@ -42,23 +45,23 @@ struct AddWater: View {
                         
                         Spacer()
                         
-                        NavigationLink(destination: Reminders()) {
-                            
+                        Button {
+                            withAnimation {
+                                showReminders.toggle()
+                            }
+                        } label: {
                             Image(systemName: "alarm.waves.left.and.right.fill")
                                 .foregroundStyle(.cyan)
                                 .font(.system(size: 30))
                         }
-                        
+                        .fullScreenCover(isPresented: $showReminders, content: {
+                            Reminders()
+                        })
                     }
                     .padding(.horizontal, 20.0)
                     .frame(maxWidth: .infinity)
                     
-                    
-                    // Count label
-                    Text("\(waterCount) ml")
-                        .padding(.top, 20.0)
-                        .foregroundStyle(Color.cyan)
-                        .font(.title)
+                    Cel(waterCount: $waterCount)
                     
                     //             MARK: Man and wave
                     
@@ -67,8 +70,6 @@ struct AddWater: View {
                             Rectangle()
                                 .fill(Color.manColor.opacity(0.8))
                                 .frame(width: 300, height: 400)
-                            
-                            
                             
                             Wave(offset: Angle(degrees: self.waveOffset.degrees), percent: percet / 95.0)
                                 .fill(Color.cyan)
@@ -95,8 +96,6 @@ struct AddWater: View {
                                 .frame(width: 300, height: 400)
                             
                         }
-                        
-                        
                     }
                     //_____________________________________________
                     
@@ -121,23 +120,21 @@ struct AddWater: View {
                             .frame(width: 205)
                         }
                         
-                        
                         HStack {
                             Image(systemName: "plus")
                                 .foregroundStyle(.cyan)
                             
                             Button {
-                                if waterCount < dailyRate {
-                                    let chislo = dailyRate / selectedML
+                                if self.waterCount < self.dailyRate {
+                                    let chislo = self.dailyRate / selectedML
                                     percet += Double(100 / chislo)
-                                    waterCount += selectedML
+                                    self.waterCount += selectedML
+                                    
                                 }
                             } label: {
                                 Image("glass1")
                                     .resizable()
                                     .frame(width: 50, height: 50)
-                                
-                                
                             }
                         }
                         
@@ -159,8 +156,8 @@ struct AddWater: View {
                         HStack {
                             
                             Button {
-                                if dailyRate > 0 {
-                                    dailyRate -= 100
+                                if self.dailyRate > 0 {
+                                    self.dailyRate -= 100
                                 }
                             } label: {
                                 Image(systemName: "minus.circle")
@@ -168,13 +165,11 @@ struct AddWater: View {
                                     .font(.system(size: 30))
                             }
                             
-                            Text("\(dailyRate) ml")
-                                .foregroundStyle(.cyan)
-                                .font(.system(size: 28))
+                            DailyNorm(dailyRate: $dailyRate)
                             
                             Button {
-                                if dailyRate < 3000 {
-                                    dailyRate += 100
+                                if self.dailyRate < 3000 {
+                                    self.dailyRate += 100
                                 }
                             } label: {
                                 Image(systemName: "plus.circle")
@@ -182,7 +177,6 @@ struct AddWater: View {
                                     .font(.system(size: 30))
                             }
                         }
-                        
                     }
                     .padding()
                     .frame(width: 320.0, height: 80)
@@ -190,11 +184,10 @@ struct AddWater: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.cyan, lineWidth: 2)
                     )
-                    
-                    
                 }
             }
-        }
+        
+        .accentColor(.cyan)
     }
 }
 

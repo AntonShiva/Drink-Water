@@ -11,16 +11,26 @@ struct ContentView: View {
     @EnvironmentObject var lnManager: LocalNotificationManager
     @Environment(\.scenePhase) var scenePhase
     var body: some View {
+        
         VStack {
             AddWater()
         }
         .task {
             try? await lnManager.requestAuthorization()
         }
+        .onChange(of: scenePhase) { newValue in
+            if newValue == .active {
+                Task {
+                    await lnManager.getCurrentSettings()
+                    await lnManager.getPendingRequests()
+                }
+            }
+        } 
     }
 }
 
 #Preview {
     ContentView()
         .environmentObject(LocalNotificationManager())
+        
 }

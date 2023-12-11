@@ -19,6 +19,8 @@
 		2DE931642AF95A0000BB3860 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DE931632AF95A0000BB3860 /* Assets.xcassets */; };
 		2DE931672AF95A0000BB3860 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DE931662AF95A0000BB3860 /* Preview Assets.xcassets */; };
 		2DE9316F2AF95C2700BB3860 /* Wave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9316E2AF95C2700BB3860 /* Wave.swift */; };
+		2DF4772C2B22BCFD00B392DB /* Cel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF4772B2B22BCFD00B392DB /* Cel.swift */; };
+		2DF4772E2B22C76700B392DB /* DailyNorm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF4772D2B22C76700B392DB /* DailyNorm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		2DE931632AF95A0000BB3860 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DE931662AF95A0000BB3860 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2DE9316E2AF95C2700BB3860 /* Wave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wave.swift; sourceTree = "<group>"; };
+		2DF4772B2B22BCFD00B392DB /* Cel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cel.swift; sourceTree = "<group>"; };
+		2DF4772D2B22C76700B392DB /* DailyNorm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyNorm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +61,18 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		2D69C4642B26246D00CAFD70 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2DE9316E2AF95C2700BB3860 /* Wave.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		2DD462E82B06769100107F59 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2D276BFA2B1739ED001154D0 /* LocalNotificationManager.swift */,
 				2DD462E92B0676AE00107F59 /* Extensions.swift */,
 			);
 			path = Utils;
@@ -71,6 +84,8 @@
 				2DE655BA2AFE03050026E4CD /* AddWater.swift */,
 				2DD462EB2B076CBF00107F59 /* Reminders.swift */,
 				2DE931612AF959FE00BB3860 /* ContentView.swift */,
+				2DF4772B2B22BCFD00B392DB /* Cel.swift */,
+				2DF4772D2B22C76700B392DB /* DailyNorm.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -96,9 +111,10 @@
 			children = (
 				2D276BA42B0F764B001154D0 /* Drink-Water-Info.plist */,
 				2DE9315F2AF959FE00BB3860 /* Drink_WaterApp.swift */,
-				2D276BAB2B107914001154D0 /* Sounds */,
+				2D69C4642B26246D00CAFD70 /* ViewModels */,
 				2DE655B92AFE01C90026E4CD /* Views */,
 				2DE9316D2AF95BEE00BB3860 /* Models */,
+				2D276BAB2B107914001154D0 /* Sounds */,
 				2DD462E82B06769100107F59 /* Utils */,
 				2DE931632AF95A0000BB3860 /* Assets.xcassets */,
 				2DE931652AF95A0000BB3860 /* Preview Content */,
@@ -117,8 +133,6 @@
 		2DE9316D2AF95BEE00BB3860 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2DE9316E2AF95C2700BB3860 /* Wave.swift */,
-				2D276BFA2B1739ED001154D0 /* LocalNotificationManager.swift */,
 				2DDBD1692B1C59D8009CA110 /* LocalNotification.swift */,
 			);
 			path = Models;
@@ -208,7 +222,9 @@
 				2DE931622AF959FE00BB3860 /* ContentView.swift in Sources */,
 				2D276BFB2B1739ED001154D0 /* LocalNotificationManager.swift in Sources */,
 				2DE931602AF959FE00BB3860 /* Drink_WaterApp.swift in Sources */,
+				2DF4772C2B22BCFD00B392DB /* Cel.swift in Sources */,
 				2DDBD16A2B1C59D8009CA110 /* LocalNotification.swift in Sources */,
+				2DF4772E2B22C76700B392DB /* DailyNorm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

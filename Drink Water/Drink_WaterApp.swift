@@ -14,7 +14,7 @@ struct Drink_WaterApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(lnManager)
-
+                .preferredColorScheme(.light)
         }
     }
 }
