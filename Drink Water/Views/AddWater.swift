@@ -100,7 +100,7 @@ struct AddWater: View {
                     //_____________________________________________
                     
                     Spacer()
-                        .frame(height: 20)
+                        .frame(height: 5)
                     
                     HStack {
                         VStack(alignment: .leading, spacing: 5) {
@@ -147,7 +147,7 @@ struct AddWater: View {
                     )
                     
                     Spacer()
-                        .frame(height: 25)
+                        .frame(height: 15)
                     
                     VStack(spacing: 5.0) {
                         Text("Выбери свою дневную норму")
@@ -184,6 +184,7 @@ struct AddWater: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.cyan, lineWidth: 2)
                     )
+                    .padding(.bottom, 10)
                 }
             }
         

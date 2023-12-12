@@ -11,9 +11,13 @@ struct ContentView: View {
     @EnvironmentObject var lnManager: LocalNotificationManager
     @Environment(\.scenePhase) var scenePhase
     var body: some View {
+        ZStack {
+            Color.bgTabBarDark
+                .ignoresSafeArea()
         
         VStack {
             AddWater()
+            TabBarView()
         }
         .task {
             try? await lnManager.requestAuthorization()
@@ -25,8 +29,9 @@ struct ContentView: View {
                     await lnManager.getPendingRequests()
                 }
             }
-        } 
+        }
     }
+}
 }
 
 #Preview {
