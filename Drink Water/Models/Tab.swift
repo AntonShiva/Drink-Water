@@ -13,7 +13,7 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
         lhs.rawValue < rhs.rawValue
     }
     
-    case reminders, home, statistics
+    case reminders, home, history
     
     internal var id: Int { rawValue }
     
@@ -23,7 +23,7 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
             return "bell.fill"
         case .home:
             return "drop.fill"
-        case .statistics:
+        case .history:
             return "calendar"
         
         }
@@ -35,7 +35,7 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
             return ""
         case .home:
             return ""
-        case .statistics:
+        case .history:
             return ""
        
         }
@@ -47,7 +47,7 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
             return .teal
         case .home:
             return .cyan
-        case .statistics:
+        case .history:
             return .teal
        
         }

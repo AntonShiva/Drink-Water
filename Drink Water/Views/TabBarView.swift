@@ -27,6 +27,7 @@ struct TabBarView: View {
         }
     }
 }
+
 fileprivate struct TabsLayoutView: View {
     @State var selectedTab: Tab = .home
     @Namespace var namespace
