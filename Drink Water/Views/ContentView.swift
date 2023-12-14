@@ -16,8 +16,7 @@ struct ContentView: View {
                 .ignoresSafeArea()
         
         VStack {
-            AddWater()
-            TabBarView()
+          TabBarView()
         }
         .task {
             try? await lnManager.requestAuthorization()

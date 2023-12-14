@@ -5,44 +5,58 @@
 //  Created by Anton Rasen on 12.12.2023.
 //
 
+
 import SwiftUI
 
-struct TabBarView: View {
-    let bgColor: Color = .init(white: 0.9)
-    
-    var body: some View {
-        ZStack {
-            Color.bgTabBarDark
-                .ignoresSafeArea()
-            TabsLayoutView()
-                .padding()
-                .background(
-                    Capsule()
-                        .fill(Color.bgTabBar)
-                        .frame(height: 65)
-                        .frame(width: 340)
-                )
-                .frame(height: 70)
-                .shadow(radius: 30)
-        }
-    }
-}
-
-fileprivate struct TabsLayoutView: View {
+ struct TabBarView: View {
+     @EnvironmentObject var lnManager: LocalNotificationManager
+     @Environment(\.scenePhase) var scenePhase
+     
     @State var selectedTab: Tab = .home
     @Namespace var namespace
     
+    
+    
     var body: some View {
+        
+        TabView(selection: $selectedTab) {
+           
+           Reminders()
+                .tag(Tab.reminders)
+            
+            AddWater()
+                .tag(Tab.home)
+                
+            History()
+                .tag(Tab.history)
+        }
+        
+        
         HStack(spacing: 40) {
             ForEach(Tab.allCases) { tab in
-                TabButton(tab: tab, selectedTab: $selectedTab, namespace: namespace)
+                TabButton(tab: tab, selectedTab: $selectedTab,  namespace: namespace)
             }
         }
+        .padding()
+            .background(
+                Capsule()
+                    .fill(Color.bgTabBar)
+                    .frame(height: 65)
+                    .frame(width: 340)
+            )
+            .frame(height: 70)
+            .shadow(radius: 30)
+        
+        
     }
     
     private struct TabButton: View {
         let tab: Tab
         @Binding var selectedTab: Tab
+       
+     
+       
+       
         var namespace: Namespace.ID
         @State private var selectedOffset: CGFloat = 0
         @State private var rotationAngle: CGFloat = 0
@@ -51,6 +65,7 @@ fileprivate struct TabsLayoutView: View {
             Button {
                 withAnimation(.easeInOut) {
                     selectedTab = tab
+                   
                 }
                 
                 selectedOffset = -35
@@ -104,12 +119,14 @@ fileprivate struct TabsLayoutView: View {
         private var isSelected: Bool {
             selectedTab == tab
         }
+        
     }
 }
-struct TabBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabBarView()
-            .frame(height: 70)
-            .padding(.bottom, 15)
-    }
+#Preview {
+    TabBarView()
+        .environmentObject(LocalNotificationManager())
 }
+
+
+
+

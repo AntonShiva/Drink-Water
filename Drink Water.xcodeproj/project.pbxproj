@@ -13,14 +13,13 @@
 		2D395FBD2B28CFF000A009A4 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D395FBC2B28CFF000A009A4 /* Tab.swift */; };
 		2D395FBF2B28D09600A009A4 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D395FBE2B28D09600A009A4 /* TabBarView.swift */; };
 		2D395FC12B29B32800A009A4 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D395FC02B29B32800A009A4 /* History.swift */; };
-		2D395FC32B29B44200A009A4 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D395FC22B29B44200A009A4 /* NavigationView.swift */; };
+		2D395FF72B2B06DE00A009A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D395FF62B2B06DE00A009A4 /* Assets.xcassets */; };
 		2DD462EA2B0676AE00107F59 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD462E92B0676AE00107F59 /* Extensions.swift */; };
 		2DD462EC2B076CBF00107F59 /* Reminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD462EB2B076CBF00107F59 /* Reminders.swift */; };
 		2DDBD16A2B1C59D8009CA110 /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDBD1692B1C59D8009CA110 /* LocalNotification.swift */; };
 		2DE655BB2AFE03050026E4CD /* AddWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE655BA2AFE03050026E4CD /* AddWater.swift */; };
 		2DE931602AF959FE00BB3860 /* Drink_WaterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9315F2AF959FE00BB3860 /* Drink_WaterApp.swift */; };
 		2DE931622AF959FE00BB3860 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE931612AF959FE00BB3860 /* ContentView.swift */; };
-		2DE931642AF95A0000BB3860 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DE931632AF95A0000BB3860 /* Assets.xcassets */; };
 		2DE931672AF95A0000BB3860 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DE931662AF95A0000BB3860 /* Preview Assets.xcassets */; };
 		2DE9316F2AF95C2700BB3860 /* Wave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9316E2AF95C2700BB3860 /* Wave.swift */; };
 		2DF4772C2B22BCFD00B392DB /* Cel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF4772B2B22BCFD00B392DB /* Cel.swift */; };
@@ -34,7 +33,7 @@
 		2D395FBC2B28CFF000A009A4 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		2D395FBE2B28D09600A009A4 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		2D395FC02B29B32800A009A4 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
-		2D395FC22B29B44200A009A4 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		2D395FF62B2B06DE00A009A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DD462E92B0676AE00107F59 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2DD462EB2B076CBF00107F59 /* Reminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminders.swift; sourceTree = "<group>"; };
 		2DDBD1692B1C59D8009CA110 /* LocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotification.swift; sourceTree = "<group>"; };
@@ -42,7 +41,6 @@
 		2DE9315C2AF959FE00BB3860 /* Drink Water.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drink Water.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE9315F2AF959FE00BB3860 /* Drink_WaterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink_WaterApp.swift; sourceTree = "<group>"; };
 		2DE931612AF959FE00BB3860 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		2DE931632AF95A0000BB3860 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DE931662AF95A0000BB3860 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2DE9316E2AF95C2700BB3860 /* Wave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wave.swift; sourceTree = "<group>"; };
 		2DF4772B2B22BCFD00B392DB /* Cel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cel.swift; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 				2DF4772D2B22C76700B392DB /* DailyNorm.swift */,
 				2D395FBE2B28D09600A009A4 /* TabBarView.swift */,
 				2D395FC02B29B32800A009A4 /* History.swift */,
-				2D395FC22B29B44200A009A4 /* NavigationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -127,7 +124,7 @@
 				2DE9316D2AF95BEE00BB3860 /* Models */,
 				2D276BAB2B107914001154D0 /* Sounds */,
 				2DD462E82B06769100107F59 /* Utils */,
-				2DE931632AF95A0000BB3860 /* Assets.xcassets */,
+				2D395FF62B2B06DE00A009A4 /* Assets.xcassets */,
 				2DE931652AF95A0000BB3860 /* Preview Content */,
 			);
 			path = "Drink Water";
@@ -215,8 +212,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D276BB02B1079EA001154D0 /* signal.wav in Resources */,
+				2D395FF72B2B06DE00A009A4 /* Assets.xcassets in Resources */,
 				2DE931672AF95A0000BB3860 /* Preview Assets.xcassets in Resources */,
-				2DE931642AF95A0000BB3860 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +224,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D395FC32B29B44200A009A4 /* NavigationView.swift in Sources */,
 				2DD462EA2B0676AE00107F59 /* Extensions.swift in Sources */,
 				2DE9316F2AF95C2700BB3860 /* Wave.swift in Sources */,
 				2DE655BB2AFE03050026E4CD /* AddWater.swift in Sources */,

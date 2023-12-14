@@ -41,6 +41,8 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
         }
     }
     
+    
+    
     var color: Color {
         switch self {
         case .reminders:

@@ -37,20 +37,7 @@ struct Reminders: View {
                 if lnManager.isGranted {
                     
                     VStack {
-                        HStack {
-                            Button {
-                                withAnimation {
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                            } label: {
-                                Image(systemName: "xmark")
-                                    .foregroundStyle(.cyan)
-                                    .font(.system(size: 30))
-                            }
-                            Spacer()
-                        }
-                        .padding([.top, .leading], 15.0)
-                        
+                    
                         Text("Напоминания")
                             .padding(.vertical, 8.0)
                             .foregroundStyle(.cyan)

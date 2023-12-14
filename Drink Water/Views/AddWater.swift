@@ -13,7 +13,7 @@ struct AddWater: View {
     @State private var waveOffset = Angle(degrees: 0)
     @State private var waveOffset2 = Angle(degrees: 180)
     
-    @State private var showReminders = false
+   
     
     // picker
     var ml = [100, 150, 200, 250, 300]
@@ -41,25 +41,7 @@ struct AddWater: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    HStack() {
-                        
-                        Spacer()
-                        
-                        Button {
-                            withAnimation {
-                                showReminders.toggle()
-                            }
-                        } label: {
-                            Image(systemName: "alarm.waves.left.and.right.fill")
-                                .foregroundStyle(.cyan)
-                                .font(.system(size: 30))
-                        }
-                        .fullScreenCover(isPresented: $showReminders, content: {
-                            Reminders()
-                        })
-                    }
-                    .padding(.horizontal, 20.0)
-                    .frame(maxWidth: .infinity)
+                
                     
                     Cel(waterCount: $waterCount)
                     
@@ -184,8 +166,9 @@ struct AddWater: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.cyan, lineWidth: 2)
                     )
-                    .padding(.bottom, 10)
+                    
                 }
+                .padding(.top, 50)
             }
         
         .accentColor(.cyan)
