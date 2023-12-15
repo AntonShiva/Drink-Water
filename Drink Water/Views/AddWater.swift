@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct AddWater: View {
+    // сохранение истории
+     @EnvironmentObject var history: HistoryClass
+     @State private var historyDate = Date()
+    
     // wave
     @State private var percet = 0.0
     @State private var waveOffset = Angle(degrees: 0)
     @State private var waveOffset2 = Angle(degrees: 180)
     
-   
     
     // picker
     var ml = [100, 150, 200, 250, 300]
@@ -112,6 +115,27 @@ struct AddWater: View {
                                     percet += Double(100 / chislo)
                                     self.waterCount += selectedML
                                     
+                                   
+                                    
+                                    // получение времение из historyDate
+                                    let dateComponents = Calendar.current.dateComponents([
+                                        .month, .hour, .minute], from: historyDate)
+                                    let stringDate = historyDate
+                                    let dateString2 = String("\(stringDate)")
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
+                                    dateFormatter.locale = Locale.init(identifier: "ru_RU")
+                                    let dateObj = dateFormatter.date(from: dateString2)
+                                    dateFormatter.dateFormat = "HH:mm"
+                                    let vremia = dateFormatter.string(from: dateObj!)
+                                    
+                                    history.addTime(time: vremia)
+                                    
+                                    history.addItem(item: String(selectedML))
+                                    
+                                    print(history.history)
+                                    print(history.time)
+                                    
                                 }
                             } label: {
                                 Image("glass1")
@@ -177,4 +201,5 @@ struct AddWater: View {
 
 #Preview {
     AddWater()
+        .environmentObject(HistoryClass())
 }

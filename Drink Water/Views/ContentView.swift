@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var lnManager: LocalNotificationManager
+    @EnvironmentObject var history: HistoryClass
     @Environment(\.scenePhase) var scenePhase
     var body: some View {
         ZStack {
@@ -36,5 +37,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(LocalNotificationManager())
-        
+        .environmentObject(HistoryClass())
 }

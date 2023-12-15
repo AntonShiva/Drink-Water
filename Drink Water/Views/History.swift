@@ -8,11 +8,35 @@
 import SwiftUI
 
 struct History: View {
+   
+     @EnvironmentObject var history: HistoryClass
+    
+   
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+           
+                Text("Истороия")
+            HStack {
+                VStack {
+                    ForEach(history.history.sorted(), id: \.self) { histori in
+                        Text(histori)
+                    }
+                    
+                }
+                
+                VStack{
+                    ForEach(history.time.sorted(), id: \.self) { t in
+                        Text(t)
+                    }
+                }
+             
+            }
+        }
     }
 }
 
 #Preview {
     History()
+        .environmentObject(HistoryClass())
 }

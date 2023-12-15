@@ -120,8 +120,7 @@ struct Reminders: View {
                                         let dateObj = dateFormatter.date(from: dateString2)
                                         dateFormatter.dateFormat = "HH:mm"
                                         let vremia = dateFormatter.string(from: dateObj!)
-                                        print(dateString2)
-                                        print(vremia)
+                                        
                                         //                                    _____________________________________________
                                         // Создане напроминания
                                         let localNotification = LocalNotification(identifier: UUID().uuidString,
