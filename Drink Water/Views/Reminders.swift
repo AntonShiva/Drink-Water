@@ -111,6 +111,7 @@ struct Reminders: View {
                                     Task {
                                         
                                         // получение времение из dateComponents
+                                        
                                         let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: scheduleDate)
                                         let stringDate = scheduleDate
                                         let dateString2 = String("\(stringDate)")

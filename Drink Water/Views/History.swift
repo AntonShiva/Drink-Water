@@ -14,23 +14,23 @@ struct History: View {
    
     
     var body: some View {
-        VStack {
-           
-                Text("Истороия")
-            HStack {
-                VStack {
-                    ForEach(history.history.sorted(), id: \.self) { histori in
-                        Text(histori)
+        ScrollView {
+            VStack {
+               Grafic()
+                    Text("Истороия")
+                HStack {
+                    VStack {
+                        ForEach(history.history.sorted(), id: \.self) { histori in
+                            HStack {
+                                Text("\(histori.steps) мл")
+                                Text("\(histori.weekday.description) ")
+                            }
+                        }
+                        
                     }
                     
+
                 }
-                
-                VStack{
-                    ForEach(history.time.sorted(), id: \.self) { t in
-                        Text(t)
-                    }
-                }
-             
             }
         }
     }

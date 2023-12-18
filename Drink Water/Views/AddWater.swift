@@ -115,26 +115,35 @@ struct AddWater: View {
                                     percet += Double(100 / chislo)
                                     self.waterCount += selectedML
                                     
-                                   
+                                    let date = Date()  // Используйте текущую дату и время, когда вода была выпита
+                                            let dateFormatter = DateFormatter()
+                                            dateFormatter.dateFormat = "yyyyMMdd"
+                                            let dateString = dateFormatter.string(from: date)
+                                            history.addItem(item: selectedML, date: dateString)
+                                    
+                                    let dateComponents = Calendar.current.dateComponents([.month, .day, .year], from: historyDate)
+                                           if let date = Calendar.current.date(from: dateComponents) {
+                                               history.addWaterConsumption(amount: selectedML, date: date)
+                                           }
                                     
                                     // получение времение из historyDate
-                                    let dateComponents = Calendar.current.dateComponents([
-                                        .month, .hour, .minute], from: historyDate)
-                                    let stringDate = historyDate
-                                    let dateString2 = String("\(stringDate)")
-                                    let dateFormatter = DateFormatter()
-                                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
-                                    dateFormatter.locale = Locale.init(identifier: "ru_RU")
-                                    let dateObj = dateFormatter.date(from: dateString2)
-                                    dateFormatter.dateFormat = "HH:mm"
-                                    let vremia = dateFormatter.string(from: dateObj!)
+//                                    let dateComponents = Calendar.current.dateComponents([
+//                                        .month, .hour, .minute], from: historyDate)
+//                                    let stringDate = historyDate
+//                                    let dateString2 = String("\(stringDate)")
+//                                    let dateFormatter = DateFormatter()
+//                                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
+//                                    dateFormatter.locale = Locale.init(identifier: "ru_RU")
+//                                    let dateObj = dateFormatter.date(from: dateString2)
+//                                    dateFormatter.dateFormat = "HH:mm"
+//                                    let vremia = dateFormatter.string(from: dateObj!)
                                     
-                                    history.addTime(time: vremia)
-                                    
-                                    history.addItem(item: String(selectedML))
-                                    
-                                    print(history.history)
-                                    print(history.time)
+//                                    history.addTime(time: vremia)
+//                                    
+//                                    history.addItem(item: String(selectedML))
+//                                    
+//                                    print(history.history)
+//                                    print(history.time)
                                     
                                 }
                             } label: {
