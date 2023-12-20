@@ -113,18 +113,50 @@ struct AddWater: View {
                                 if self.waterCount < self.dailyRate {
                                     let chislo = self.dailyRate / selectedML
                                     percet += Double(100 / chislo)
+                                }
                                     self.waterCount += selectedML
                                     
-                                    let date = Date()  // Используйте текущую дату и время, когда вода была выпита
-                                            let dateFormatter = DateFormatter()
-                                            dateFormatter.dateFormat = "yyyyMMdd"
-                                            let dateString = dateFormatter.string(from: date)
-                                            history.addItem(item: selectedML, date: dateString)
+                                    let date = Date()
+                                   
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.locale = Locale.current
+                                    dateFormatter.timeZone = TimeZone.current
+                                    dateFormatter.locale = Locale(identifier: "ru_RU_POSIX")
+                                    dateFormatter.dateFormat = "yyyy-MM-dd' 'HH:mm:ssZ"
                                     
-                                    let dateComponents = Calendar.current.dateComponents([.month, .day, .year], from: historyDate)
-                                           if let date = Calendar.current.date(from: dateComponents) {
-                                               history.addWaterConsumption(amount: selectedML, date: date)
-                                           }
+                                     let dateString = dateFormatter.string(from: date)
+                                  
+                                    
+                                    if let dateDate = dateFormatter.date(from: dateString) {
+                                        // создание формата для dailyConsumptions и передачу в график
+                                        let dateDailyConsumptions = Date()
+                                        let formatter = DateFormatter()
+                                        formatter.dateFormat = "yyyyMMdd"
+                                        let datedailyConsumptionsStrin = formatter.string(from: dateDailyConsumptions)
+                                  print(datedailyConsumptionsStrin)
+                                        if let datedailyConsumptionsDate = formatter.date(from: datedailyConsumptionsStrin) {
+                                            print(datedailyConsumptionsDate)
+                                            history.addWaterConsumption(amount: selectedML, date: datedailyConsumptionsDate)
+                                        }
+                                        let stepCount = HistoryStruct(weekday: dateString, porcia: selectedML, date: dateDate)
+                                        history.history.append(stepCount)
+                                       
+                                    }
+                                    
+//                                            history.addItem(item: selectedML, date: dateString)
+//                                    print(history.history)
+//                                    print(history.dailyConsumptions)
+//                                    let dateComponents = Calendar.current.dateComponents([.month, .day, .year], from: historyDate)
+//                                           if let date = Calendar.current.date(from: dateComponents) {
+                                    
+//                                    if let existingIndex = history.dailyConsumptions.firstIndex(where: { $0.date == dateString }) {
+//                                        history.dailyConsumptions[existingIndex].totalWaterConsumed += selectedML
+//                                    } else {
+//                                        let newConsumption = DailyWaterConsumption(date: dateString, totalWaterConsumed: selectedML)
+//                                        history.dailyConsumptions.append(newConsumption)
+//                                    }
+//                                               history.addWaterConsumption(amount: selectedML, date: dateString)
+//                                           }
                                     
                                     // получение времение из historyDate
 //                                    let dateComponents = Calendar.current.dateComponents([
@@ -142,10 +174,10 @@ struct AddWater: View {
 //                                    
 //                                    history.addItem(item: String(selectedML))
 //                                    
-//                                    print(history.history)
+//                                    print(history.dailyConsumptions)
 //                                    print(history.time)
                                     
-                                }
+                                
                             } label: {
                                 Image("glass1")
                                     .resizable()

@@ -22,9 +22,15 @@ struct History: View {
                     VStack {
                         ForEach(history.history.sorted(), id: \.self) { histori in
                             HStack {
-                                Text("\(histori.steps) мл")
-                                Text("\(histori.weekday.description) ")
+                                Image("glass1")
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                Text("\(histori.porcia) мл")
+                                Spacer()
+                                Text("\(histori.date.formatted(date: .omitted, time: .shortened)) ")
+                                    .padding(.trailing, 50.0)
                             }
+                            .padding(.horizontal, 50)
                         }
                         
                     }

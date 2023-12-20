@@ -8,56 +8,60 @@
 import SwiftUI
 import Charts
 
+
 struct Grafic: View {
     @EnvironmentObject var history: HistoryClass
     
     var body: some View {
         ScrollView {
+
             VStack {
-                    GroupBox ( "История") {
-                        Chart(history.dailyConsumptions) {
-                            let totalWaterConsumed = $0.totalWaterConsumed
-                            BarMark(
-                                x: .value("Step Count", $0.totalWaterConsumed),
-                                y: .value("Week Day", $0.date, unit: .day)
-                            )
-                            .foregroundStyle(Color.cyan)
-                            .annotation(position: .overlay, alignment: .trailing, spacing: 5) {
-                                Text("\(totalWaterConsumed) мл")
-                                    .font(.footnote)
-                                    .foregroundColor(.white)
-                                    .fontWeight(.bold)
+                ScrollView {
+                    GroupBox ( "Bar Chart - Step Count") {
+                                Chart(history.dailyConsumptions) {
+                                    let totalWaterConsumed = $0.totalWaterConsumed
+                                    BarMark(
+                                        x: .value("Week Day", $0.date, unit: .day),
+                                        y: .value("Step Count", $0.totalWaterConsumed)
+                                            
+                                    )
+                                    
+                                    .foregroundStyle(Color.cyan)
+                                    .annotation(position: .top, alignment: .center, spacing: 5) {
+                                                                    Text("\(totalWaterConsumed)")
+                                                                        .font(.footnote)
+                                                                        .foregroundColor(.cyan)
+                                                                        .fontWeight(.bold)
+                                     }
+                                    
+                                    RuleMark(y: .value("Average Profit", (1800)))
+                                        .foregroundStyle(.gray)
+                                }
+                            
+                                .chartScrollableAxes(.horizontal)
+                                
+                                .chartYAxis {
+                                    AxisMarks(position: .leading)
+                                        
+                                }
+                        
+                                .chartXAxis {
+                                    AxisMarks (values: .stride (by: .day)) { value in
+                                        AxisGridLine().foregroundStyle(.cyan)
+                                        
+                                        AxisValueLabel(format: .dateTime.day(),
+                                                       centered: true)
+                                    }
+                                }
                             }
-                        }
-                        .chartXAxis(.hidden)
-                        .chartYAxis {
-                            AxisMarks (position: .leading, values: .stride (by: .day)) { value in
-                                AxisValueLabel(format: .dateTime.day(),
-                                               centered: true)
-                            }
-                        }
-                    }
-                    .frame(height: 500)
-                    
-                    Spacer()
-                       
+                    .frame(height: 400)
                 }
-            .padding()
-            
-            VStack {
-                        GroupBox ( "Bar Chart - Step Count") {
-                            Chart(history.dailyConsumptions) {
-                                BarMark(
-                                    x: .value("Week Day", $0.date, unit: .day),
-                                    y: .value("Step Count", $0.totalWaterConsumed)
-                                )
-                            }
-                        }
-                        .frame(height: 500)
                         
                         Spacer()
                     }
                     .padding()
+            
+         
         }
         
        
@@ -69,38 +73,58 @@ struct Grafic: View {
         .environmentObject(HistoryClass())
 }
 
-struct DailyWaterConsumption: Identifiable, Hashable {
+struct DailyWaterConsumption: Identifiable, Hashable, Comparable {
+    static func < (lhs: DailyWaterConsumption, rhs: DailyWaterConsumption) -> Bool {
+        return lhs.date < rhs.date
+    }
+    
     let id = UUID()
     let date: Date
     var totalWaterConsumed: Int
+    
+//    init(date: Date, totalWaterConsumed: Int) {
+//        let formatter = DateFormatter()
+//                formatter.dateFormat = "yyyyMMdd"
+//                
+//                 
+//        self.date = formatter.date(from: date) ?? Date.distantPast
+//        print(date)
+//        self.totalWaterConsumed = totalWaterConsumed
+//    }
+    
 }
 
-struct StepCount: Identifiable, Hashable, Comparable {
-    static func < (lhs: StepCount, rhs: StepCount) -> Bool {
+struct HistoryStruct: Identifiable, Hashable, Comparable {
+    static func < (lhs: HistoryStruct, rhs: HistoryStruct) -> Bool {
         return lhs.weekday < rhs.weekday
     }
     let id = UUID()
-    let weekday: Date
-    let steps: Int
+    let weekday: String
+    let porcia: Int
+    let date: Date
     
     
-    init(day: String, steps: Int) {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ru_RU")
-        formatter.dateFormat = "yyyyLLdd"
-        
-        
-        self.weekday = formatter.date(from: day) ?? Date.distantPast
-        self.steps = steps
-    }
+//    init(day: String, porcia: Int) {
+////        let formatter = DateFormatter()
+////        formatter.locale = Locale(identifier: "ru_RU")
+////        formatter.dateFormat = "yyyyLLdd HH:mm"
+//        let dateFormatter = ISO8601DateFormatter()
+////        dateFormatter.locale = Locale(identifier: "ru_RU_POSIX")
+////        dateFormatter.dateFormat = "yyyy-MM-dd' 'HH:mm:ssZ"
+////        dateFormatter.timeZone = TimeZone.current
+////        dateFormatter.locale = Locale.current
+//        self.weekday = dateFormatter.date(from: day) ?? Date.distantPast
+//        print(day)
+//        self.porcia = porcia
+//    }
     
-    var weekdayString: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.dateFormat = "yyyyLLdd"
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .none
-        
-        return  dateFormatter.string(from: weekday)
-    }
+//    var weekdayString: String {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale(identifier: "ru_RU")
+//        dateFormatter.dateFormat = "yyyyLLdd HH:mm"
+//        dateFormatter.dateStyle = .long
+//        dateFormatter.timeStyle = .none
+//        
+//        return  dateFormatter.string(from: weekday)
+//    }
 }

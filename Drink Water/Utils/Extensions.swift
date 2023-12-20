@@ -16,3 +16,18 @@ extension Color {
     
 }
 
+extension Date {
+    func localString(dateStyle: DateFormatter.Style = .long, timeStyle: DateFormatter.Style = .long) -> String {
+        return DateFormatter.localizedString(from: self, dateStyle: dateStyle, timeStyle: timeStyle)
+    }
+}
+
+extension String {
+   func date(format: String) -> Date? {
+           let dateFormatter = DateFormatter()
+           dateFormatter.dateFormat = format
+           dateFormatter.timeZone = TimeZone.current
+           let date = dateFormatter.date(from: self)
+           return date
+       }
+   }
