@@ -70,6 +70,6 @@ struct Grafic: View {
 
 #Preview {
     Grafic()
-        .environmentObject(HistoryClass())
+       
 }
 

@@ -10,7 +10,7 @@ import SwiftData
 
 struct History: View {
     
-    @EnvironmentObject var history: HistoryClass
+   
     
     @Environment(\.modelContext) var context
     
@@ -97,5 +97,5 @@ struct History: View {
 
 #Preview {
     History()
-        .environmentObject(HistoryClass())
+       
 }

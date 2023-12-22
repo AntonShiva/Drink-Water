@@ -10,7 +10,7 @@ import SwiftData
 
 struct ContentView: View {
     @EnvironmentObject var lnManager: LocalNotificationManager
-    @EnvironmentObject var history: HistoryClass
+
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.modelContext) var context
     @Query var items: [HistoryStruct]
@@ -40,5 +40,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(LocalNotificationManager())
-        .environmentObject(HistoryClass())
+       
 }

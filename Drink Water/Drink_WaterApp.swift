@@ -11,12 +11,12 @@ import SwiftData
 @main
 struct Drink_WaterApp: App {
     @StateObject var lnManager = LocalNotificationManager()
-    @StateObject var history = HistoryClass()
+  
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(lnManager)
-                .environmentObject(history)
+             
                 .preferredColorScheme(.light)
         }
         .modelContainer(for: [HistoryStruct.self, DailyWaterConsumption.self])

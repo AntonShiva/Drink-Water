@@ -10,9 +10,6 @@ import SwiftData
 
 struct AddWater: View {
     // сохранение истории
-    @EnvironmentObject var history: HistoryClass
-    @State private var historyDate = Date()
-    
     // СвифтДата
     @Environment(\.modelContext) var context
     @Query var items: [HistoryStruct]
@@ -229,5 +226,5 @@ struct AddWater: View {
 
 #Preview {
     AddWater()
-        .environmentObject(HistoryClass())
+        
 }
