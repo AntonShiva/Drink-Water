@@ -14,13 +14,34 @@ struct History: View {
     
     @Environment(\.modelContext) var context
     
-    @State var newItemString = ""
+  
     @Query var items: [HistoryStruct]
-    
+    @Query var dailyWaterConsumption: [DailyWaterConsumption]
     var body: some View {
         VStack {
             
             Grafic()
+            
+            
+//            List {
+//                ForEach(dailyWaterConsumption.sorted(by: { $0.date < $1.date })) { item in
+//                    HStack {
+//                        Image("glass1")
+//                            .resizable()
+//                            .frame(width: 40, height: 40)
+//                        Text("\(item.totalWaterConsumed)")
+//                        Spacer()
+//                        Text(item.date.formatted(date: .omitted, time: .shortened))
+//                            .padding(.trailing, 50.0)
+//                    }
+//                    .padding(.horizontal, 50)
+//                }
+//            }
+//            .overlay {
+//                if items.isEmpty {
+//                    Text("No Items")
+//                }
+//            }
             
             List {
                 ForEach(items.sorted(by: { $0.date < $1.date })) { item in

@@ -19,6 +19,7 @@ struct Drink_WaterApp: App {
                 .environmentObject(history)
                 .preferredColorScheme(.light)
         }
-        .modelContainer(for: HistoryStruct.self)
+        .modelContainer(for: [HistoryStruct.self, DailyWaterConsumption.self])
+    
     }
 }

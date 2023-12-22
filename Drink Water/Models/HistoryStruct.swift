@@ -9,16 +9,13 @@ import Foundation
 import SwiftData
 @Model
 class HistoryStruct {
-   
-    let weekday: String
+    
     let porcia: Int
     let date: Date
     
-    init(weekday: String, porcia: Int, date: Date) {
-        self.weekday = weekday
+    init(porcia: Int, date: Date) {
         self.porcia = porcia
         self.date = date
     }
-    
    
 }

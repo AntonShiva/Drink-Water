@@ -35,26 +35,26 @@ class HistoryClass: ObservableObject {
    
     
     
-    @Published var dailyConsumptions = [DailyWaterConsumption(date: dat!, totalWaterConsumed: 1500),DailyWaterConsumption(date: date!, totalWaterConsumed: 3000), DailyWaterConsumption(date: date1!, totalWaterConsumed: 2100), DailyWaterConsumption(date: date2!, totalWaterConsumed: 1500),DailyWaterConsumption(date: date3!, totalWaterConsumed: 1200), DailyWaterConsumption(date: date5!, totalWaterConsumed: 2500), DailyWaterConsumption(date: date5!, totalWaterConsumed: 1800)]
-    
-    
-    init() {
-     
-        self.dailyConsumptions = dailyConsumptions
-    }
-    
-       
-    
-    func addWaterConsumption(amount: Int, date: Date) {
-            if let existingIndex = dailyConsumptions.firstIndex(where: { $0.date == date }) {
-                dailyConsumptions[existingIndex].totalWaterConsumed += amount
-            } else {
-                let newConsumption = DailyWaterConsumption(date: date, totalWaterConsumed: amount)
-                dailyConsumptions.append(newConsumption)
-            }
-
-        }
-    
+//    @Published var dailyConsumptions = [DailyWaterConsumption(date: dat!, totalWaterConsumed: 1500),DailyWaterConsumption(date: date!, totalWaterConsumed: 3000), DailyWaterConsumption(date: date1!, totalWaterConsumed: 2100), DailyWaterConsumption(date: date2!, totalWaterConsumed: 1500),DailyWaterConsumption(date: date3!, totalWaterConsumed: 1200), DailyWaterConsumption(date: date5!, totalWaterConsumed: 2500), DailyWaterConsumption(date: date5!, totalWaterConsumed: 1800)]
+//    
+//    
+//    init() {
+//     
+//        self.dailyConsumptions = dailyConsumptions
+//    }
+//    
+//       
+//    
+//    func addWaterConsumption(amount: Int, date: Date) {
+//            if let existingIndex = dailyConsumptions.firstIndex(where: { $0.date == date }) {
+//                dailyConsumptions[existingIndex].totalWaterConsumed += amount
+//            } else {
+//                let newConsumption = DailyWaterConsumption(date: date, totalWaterConsumed: amount)
+//                dailyConsumptions.append(newConsumption)
+//            }
+//
+//        }
+//    
     
 //    func addItem(item: Int, date: String) {
 //        let stepCount = StepCount(day: date, steps: item)
