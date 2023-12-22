@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct Drink_WaterApp: App {
@@ -18,5 +19,6 @@ struct Drink_WaterApp: App {
                 .environmentObject(history)
                 .preferredColorScheme(.light)
         }
+        .modelContainer(for: HistoryStruct.self)
     }
 }

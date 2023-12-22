@@ -9,9 +9,10 @@ import SwiftUI
 import Charts
 
 
+
 struct Grafic: View {
     @EnvironmentObject var history: HistoryClass
-    
+
     var body: some View {
         ScrollView {
 
@@ -37,7 +38,7 @@ struct Grafic: View {
                                     RuleMark(y: .value("Average Profit", (1800)))
                                         .foregroundStyle(.gray)
                                 }
-                            
+                                
                                 .chartScrollableAxes(.horizontal)
                                 
                                 .chartYAxis {
@@ -92,39 +93,4 @@ struct DailyWaterConsumption: Identifiable, Hashable, Comparable {
 //        self.totalWaterConsumed = totalWaterConsumed
 //    }
     
-}
-
-struct HistoryStruct: Identifiable, Hashable, Comparable {
-    static func < (lhs: HistoryStruct, rhs: HistoryStruct) -> Bool {
-        return lhs.weekday < rhs.weekday
-    }
-    let id = UUID()
-    let weekday: String
-    let porcia: Int
-    let date: Date
-    
-    
-//    init(day: String, porcia: Int) {
-////        let formatter = DateFormatter()
-////        formatter.locale = Locale(identifier: "ru_RU")
-////        formatter.dateFormat = "yyyyLLdd HH:mm"
-//        let dateFormatter = ISO8601DateFormatter()
-////        dateFormatter.locale = Locale(identifier: "ru_RU_POSIX")
-////        dateFormatter.dateFormat = "yyyy-MM-dd' 'HH:mm:ssZ"
-////        dateFormatter.timeZone = TimeZone.current
-////        dateFormatter.locale = Locale.current
-//        self.weekday = dateFormatter.date(from: day) ?? Date.distantPast
-//        print(day)
-//        self.porcia = porcia
-//    }
-    
-//    var weekdayString: String {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.locale = Locale(identifier: "ru_RU")
-//        dateFormatter.dateFormat = "yyyyLLdd HH:mm"
-//        dateFormatter.dateStyle = .long
-//        dateFormatter.timeStyle = .none
-//        
-//        return  dateFormatter.string(from: weekday)
-//    }
 }

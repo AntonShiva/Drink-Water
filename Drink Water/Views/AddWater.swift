@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AddWater: View {
     // сохранение истории
      @EnvironmentObject var history: HistoryClass
      @State private var historyDate = Date()
+    
+    // СвифтДата
+    @Environment(\.modelContext) var context
+    @Query var items: [HistoryStruct]
     
     // wave
     @State private var percet = 0.0
@@ -21,12 +26,13 @@ struct AddWater: View {
     // picker
     var ml = [100, 150, 200, 250, 300]
     @State private var selectedML = 200
+//    @AppStorage("waterCount")
     @State private var waterCount = 0
     
     @State private var isPresented = false
     
     // amount of water per day - daily rate
-    @State private var dailyRate = 1800
+    @AppStorage("dailyRate")  var dailyRate = 1800
     
     
     
@@ -44,7 +50,7 @@ struct AddWater: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                
+                 
                     
                     Cel(waterCount: $waterCount)
                     
@@ -133,13 +139,19 @@ struct AddWater: View {
                                         let formatter = DateFormatter()
                                         formatter.dateFormat = "yyyyMMdd"
                                         let datedailyConsumptionsStrin = formatter.string(from: dateDailyConsumptions)
-                                  print(datedailyConsumptionsStrin)
+//                                  print(datedailyConsumptionsStrin)
                                         if let datedailyConsumptionsDate = formatter.date(from: datedailyConsumptionsStrin) {
-                                            print(datedailyConsumptionsDate)
+//                                            print(datedailyConsumptionsDate)
                                             history.addWaterConsumption(amount: selectedML, date: datedailyConsumptionsDate)
                                         }
-                                        let stepCount = HistoryStruct(weekday: dateString, porcia: selectedML, date: dateDate)
-                                        history.history.append(stepCount)
+                                        
+                                        
+                                        let stepCount = HistoryStruct(weekday: dateString, porcia: 200, date: dateDate)
+                                        print(stepCount.porcia)
+                                        context.insert(stepCount)
+                                        
+                                        print(items)
+                                       
                                        
                                     }
                                     
@@ -197,6 +209,7 @@ struct AddWater: View {
                         .frame(height: 15)
                     
                     VStack(spacing: 5.0) {
+                        
                         Text("Выбери свою дневную норму")
                             .foregroundStyle(.cyan)
                             .font(.system(size: 18))
@@ -231,6 +244,7 @@ struct AddWater: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.cyan, lineWidth: 2)
                     )
+                
                     
                 }
                 .padding(.top, 50)
