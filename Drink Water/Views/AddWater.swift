@@ -14,6 +14,8 @@ struct AddWater: View {
     @Environment(\.modelContext) var context
     @Query var items: [HistoryStruct]
     @Query var dailyWaterConsumption: [DailyWaterConsumption]
+    @AppStorage("count")  var count = 0
+    @Query var countHistory: [HistoryCount]
     
     
     // wave
@@ -37,7 +39,7 @@ struct AddWater: View {
     
     // initializer of colors for the picker
     init() {
-        UISegmentedControl.appearance().selectedSegmentTintColor = #colorLiteral(red: 0.2642083466, green: 0.7893971801, blue: 1, alpha: 1)
+        UISegmentedControl.appearance().selectedSegmentTintColor =  #colorLiteral(red: 0.2642083466, green: 0.7893971801, blue: 1, alpha: 1)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
     }
@@ -138,26 +140,31 @@ struct AddWater: View {
                                 let formatter = DateFormatter()
                                 formatter.dateFormat = "yyyyMMdd"
                                 let datedailyConsumptionsStrin = formatter.string(from: dateDailyConsumptions)
-                                //                                  print(datedailyConsumptionsStrin)
+                              
                                 if let datedailyConsumptionsDate = formatter.date(from: datedailyConsumptionsStrin) {
-                                    print(datedailyConsumptionsDate)
-                                    //                                            history.addWaterConsumption(amount: selectedML, date: datedailyConsumptionsDate)
+                                   
                                     
                                     if let existingIndex = dailyWaterConsumption.firstIndex(where: { $0.date == datedailyConsumptionsDate }) {
                                         dailyWaterConsumption[existingIndex].totalWaterConsumed += selectedML
                                         
+                                       
                                     } else {
                                         let newConsumption = DailyWaterConsumption(totalWaterConsumed: selectedML, date: datedailyConsumptionsDate)
-                                        print(newConsumption)
                                         context.insert(newConsumption)
+//                                         счетчик столбцов для скрола
+                                        count += 1
+                                        let countHistory = HistoryCount.init(count: count)
+                                        context.insert(countHistory)
+                                       
                                     }
-                                    
                                 }
                                 
                                 let stepCount = HistoryStruct(porcia: selectedML, date: dateDate)
-                                //                                        print(stepCount.porcia)
-                                context.insert(stepCount)
                            
+                                context.insert(stepCount)
+                               
+                                print(countHistory.count)
+                                                                     
                             }
                             
                         } label: {
