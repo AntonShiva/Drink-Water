@@ -10,7 +10,7 @@ import SwiftData
 @Model
 class HistoryStruct {
     
-    let porcia: Int
+    var porcia: Int
     let date: Date
     
     init(porcia: Int, date: Date) {

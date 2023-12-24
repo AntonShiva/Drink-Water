@@ -124,48 +124,30 @@ struct AddWater: View {
                             self.waterCount += selectedML
                             
                             let date = Date()
-                            
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.locale = Locale.current
-                            dateFormatter.timeZone = TimeZone.current
-                            dateFormatter.locale = Locale(identifier: "ru_RU_POSIX")
-                            dateFormatter.dateFormat = "yyyy-MM-dd' 'HH:mm:ssZ"
-                            
-                            let dateString = dateFormatter.string(from: date)
-                            
-                            
-                            if let dateDate = dateFormatter.date(from: dateString) {
-                                // создание формата для dailyConsumptions и передачу в график
-                                let dateDailyConsumptions = Date()
-                                let formatter = DateFormatter()
-                                formatter.dateFormat = "yyyyMMdd"
-                                let datedailyConsumptionsStrin = formatter.string(from: dateDailyConsumptions)
-                              
-                                if let datedailyConsumptionsDate = formatter.date(from: datedailyConsumptionsStrin) {
+                       
                                    
                                     
-                                    if let existingIndex = dailyWaterConsumption.firstIndex(where: { $0.date == datedailyConsumptionsDate }) {
+                                    if let existingIndex = dailyWaterConsumption.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
                                         dailyWaterConsumption[existingIndex].totalWaterConsumed += selectedML
                                         
-                                       
                                     } else {
-                                        let newConsumption = DailyWaterConsumption(totalWaterConsumed: selectedML, date: datedailyConsumptionsDate)
-                                        context.insert(newConsumption)
-//                                         счетчик столбцов для скрола
+                                        let newConsumption = DailyWaterConsumption(totalWaterConsumed: selectedML, date: date)
                                         count += 1
                                         let countHistory = HistoryCount.init(count: count)
                                         context.insert(countHistory)
-                                       
+                                        context.insert(newConsumption)
                                     }
-                                }
-                                
-                                let stepCount = HistoryStruct(porcia: selectedML, date: dateDate)
-                           
-                                context.insert(stepCount)
-                               
-                                print(countHistory.count)
-                                                                     
-                            }
+                            
+//                            if let existingIndex1 = items.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
+//                              
+//                                                         items[existingIndex1].porcia = selectedML
+//                                                     } else {
+                                                     
+                                                         let stepCount = HistoryStruct(porcia: selectedML, date: date)
+                                                         print(date)
+                                                         context.insert(stepCount)
+                                                    
+//                                                     }
                             
                         } label: {
                             Image("glass1")
@@ -221,8 +203,6 @@ struct AddWater: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.cyan, lineWidth: 2)
                 )
-                
-                
             }
             .padding(.top, 50)
         }
@@ -233,5 +213,5 @@ struct AddWater: View {
 
 #Preview {
     AddWater()
-        
+    
 }

@@ -13,7 +13,7 @@ struct ContentView: View {
 
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.modelContext) var context
-    @Query var items: [HistoryStruct]
+//    @Query var items: [HistoryStruct]
     var body: some View {
         ZStack {
             Color.bgTabBarDark
