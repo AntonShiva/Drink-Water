@@ -16,7 +16,7 @@ struct AddWater: View {
     @Query var dailyWaterConsumption: [DailyWaterConsumption]
     @AppStorage("count")  var count = 0
     @Query var countHistory: [HistoryCount]
-    
+    @Query var waterConsumptionByDate: [WaterConsumptionByDate]
     
     // wave
     @State private var percet = 0.0
@@ -125,11 +125,16 @@ struct AddWater: View {
                             
                             let date = Date()
                        
+                                   // вермя
+                                   let timeFormatter = DateFormatter()
+                                   timeFormatter.dateFormat = "HH:mm"
+                                   let timeString = timeFormatter.string(from: date)
                                    
                                     
                                     if let existingIndex = dailyWaterConsumption.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
                                         dailyWaterConsumption[existingIndex].totalWaterConsumed += selectedML
-                                        
+                                        print(count)
+
                                     } else {
                                         let newConsumption = DailyWaterConsumption(totalWaterConsumed: selectedML, date: date)
                                         count += 1
@@ -138,16 +143,30 @@ struct AddWater: View {
                                         context.insert(newConsumption)
                                     }
                             
-//                            if let existingIndex1 = items.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
-//                              
-//                                                         items[existingIndex1].porcia = selectedML
-//                                                     } else {
+
                                                      
                                                          let stepCount = HistoryStruct(porcia: selectedML, date: date)
-                                                         print(date)
+                                                       
                                                          context.insert(stepCount)
                                                     
-//                                                     }
+
+                            if let index = waterConsumptionByDate.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
+                                waterConsumptionByDate[index].porcaica.append(selectedML)
+                                waterConsumptionByDate[index].vremia.append(timeString)
+                                print(waterConsumptionByDate[index].date)
+                                print(waterConsumptionByDate[index].vremia)
+                                print(waterConsumptionByDate[index].porcaica)
+                            } else {
+                                let consumption = WaterConsumptionByDate(date: date, vremia: [timeString], porcaica: [selectedML])
+                                count += 1
+                                let countHistory = HistoryCount(count: count)
+                                context.insert(countHistory)
+                                context.insert(consumption)
+                                print(consumption.date)
+                                print(consumption.vremia)
+                                print(consumption.porcaica)
+                            }
+                            
                             
                         } label: {
                             Image("glass1")

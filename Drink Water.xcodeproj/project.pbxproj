@@ -15,10 +15,10 @@
 		2D395FC12B29B32800A009A4 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D395FC02B29B32800A009A4 /* History.swift */; };
 		2D395FF72B2B06DE00A009A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D395FF62B2B06DE00A009A4 /* Assets.xcassets */; };
 		2D6F4CF82B2C271800B43AB8 /* Grafic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6F4CF72B2C271800B43AB8 /* Grafic.swift */; };
+		2D77117B2B3C3EA70029F9C1 /* WaterConsumptionByDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D77117A2B3C3EA70029F9C1 /* WaterConsumptionByDate.swift */; };
 		2D9C46862B3578F900318F13 /* HistoryStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C46852B3578F900318F13 /* HistoryStruct.swift */; };
 		2D9C468A2B35C7E500318F13 /* DailyWaterConsumption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C46892B35C7E500318F13 /* DailyWaterConsumption.swift */; };
 		2D9C468E2B376E7800318F13 /* HistoryCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C468D2B376E7800318F13 /* HistoryCount.swift */; };
-		2D9C46962B38986100318F13 /* WaterConsumption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C46952B38986100318F13 /* WaterConsumption.swift */; };
 		2DD462EA2B0676AE00107F59 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD462E92B0676AE00107F59 /* Extensions.swift */; };
 		2DD462EC2B076CBF00107F59 /* Reminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD462EB2B076CBF00107F59 /* Reminders.swift */; };
 		2DDBD16A2B1C59D8009CA110 /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDBD1692B1C59D8009CA110 /* LocalNotification.swift */; };
@@ -40,10 +40,10 @@
 		2D395FC02B29B32800A009A4 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		2D395FF62B2B06DE00A009A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D6F4CF72B2C271800B43AB8 /* Grafic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grafic.swift; sourceTree = "<group>"; };
+		2D77117A2B3C3EA70029F9C1 /* WaterConsumptionByDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterConsumptionByDate.swift; sourceTree = "<group>"; };
 		2D9C46852B3578F900318F13 /* HistoryStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryStruct.swift; sourceTree = "<group>"; };
 		2D9C46892B35C7E500318F13 /* DailyWaterConsumption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWaterConsumption.swift; sourceTree = "<group>"; };
 		2D9C468D2B376E7800318F13 /* HistoryCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCount.swift; sourceTree = "<group>"; };
-		2D9C46952B38986100318F13 /* WaterConsumption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterConsumption.swift; sourceTree = "<group>"; };
 		2DD462E92B0676AE00107F59 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2DD462EB2B076CBF00107F59 /* Reminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminders.swift; sourceTree = "<group>"; };
 		2DDBD1692B1C59D8009CA110 /* LocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotification.swift; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 				2D9C46852B3578F900318F13 /* HistoryStruct.swift */,
 				2D9C46892B35C7E500318F13 /* DailyWaterConsumption.swift */,
 				2D9C468D2B376E7800318F13 /* HistoryCount.swift */,
-				2D9C46952B38986100318F13 /* WaterConsumption.swift */,
+				2D77117A2B3C3EA70029F9C1 /* WaterConsumptionByDate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -250,8 +250,8 @@
 				2D395FBD2B28CFF000A009A4 /* Tab.swift in Sources */,
 				2D276BFB2B1739ED001154D0 /* LocalNotificationManager.swift in Sources */,
 				2D6F4CF82B2C271800B43AB8 /* Grafic.swift in Sources */,
-				2D9C46962B38986100318F13 /* WaterConsumption.swift in Sources */,
 				2DE931602AF959FE00BB3860 /* Drink_WaterApp.swift in Sources */,
+				2D77117B2B3C3EA70029F9C1 /* WaterConsumptionByDate.swift in Sources */,
 				2DF4772C2B22BCFD00B392DB /* Cel.swift in Sources */,
 				2DDBD16A2B1C59D8009CA110 /* LocalNotification.swift in Sources */,
 				2D395FC12B29B32800A009A4 /* History.swift in Sources */,

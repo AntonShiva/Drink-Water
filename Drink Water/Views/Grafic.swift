@@ -20,7 +20,7 @@ struct Grafic: View {
   
     var body: some View {
         
-        if count.count >= 5     {
+        if count.count >= 10     {
         VStack {
             
             GroupBox ( "Bar Chart - Step Count") {
