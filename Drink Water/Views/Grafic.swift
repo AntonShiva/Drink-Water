@@ -9,29 +9,91 @@ import SwiftUI
 import Charts
 import SwiftData
 
-
 struct Grafic: View {
+   @Environment(\.modelContext) var context
     
+    @Environment(\.dismiss) var dismiss
     
-    @Environment(\.modelContext) var context
-  
     @Query var dailyWaterConsumption: [DailyWaterConsumption]
     @Query var count: [HistoryCount]
-  
+    
+    @State var dateFromGrafic: Date?
+    
+    func updateSelectedMonth(at location: CGPoint, proxy: ChartProxy, geometry: GeometryProxy) {
+          let xPosition = location.x - geometry[proxy.plotAreaFrame].origin.x
+          guard let date: Date = proxy.value(atX: xPosition) else {
+              return
+          }
+        dateFromGrafic = date
+         print(date)
+      }
+    
     var body: some View {
-        
-        if count.count >= 10     {
         VStack {
-            
-            GroupBox ( "Bar Chart - Step Count") {
+            Button {
+                dismiss()
+            } label: {
+                Text("Закрыть")
+            }
+
+        if count.count >= 13     {
+            VStack {
                 Chart(dailyWaterConsumption) {
+
+                        let totalWaterConsumed1 = $0.totalWaterConsumed
+                        
+                        BarMark(
+                            x: .value("Week Day", $0.date, unit: .day),
+                            y: .value("Step Count", $0.totalWaterConsumed),
+                            width: .fixed(30)
+                        )
+                        .foregroundStyle(Color.cyan)
+                        .annotation(position: .top, alignment: .top, spacing: 5) {
+                            Text("\(totalWaterConsumed1)")
+                                
+                                .font(.system(size: 10))
+                                .foregroundColor(.cyan)
+                                .fontWeight(.bold)
+                        }
+                    
+                }
+                .chartOverlay { proxy in
+                        GeometryReader { geometry in
+                            ZStack(alignment: .top) {
+                                Rectangle().fill(.clear).contentShape(Rectangle())
+                                    .onTapGesture { location in
+                                        updateSelectedMonth(at: location, proxy: proxy, geometry: geometry)
+                                    }
+                            }
+                        }
+                    }
+                .chartScrollableAxes(.horizontal)
+                .chartXAxis {
+                    AxisMarks (values: .stride (by: .day)) { value in
+                        AxisGridLine().foregroundStyle(.cyan)
+                        
+                        AxisValueLabel(format: .dateTime.day().month(.defaultDigits),
+                                       centered: true)
+                        
+                    }
+                }
+                
+                .frame(height: 350)
+                Spacer()
+            }
+            .padding()
+            
+        } else {
+            VStack {
+                Chart(dailyWaterConsumption) {
+                    
                     let totalWaterConsumed1 = $0.totalWaterConsumed
                     
                     BarMark(
                         x: .value("Week Day", $0.date, unit: .day),
                         y: .value("Step Count", $0.totalWaterConsumed),
-                        width: .fixed(30)                                    )
-                    
+                        width: .fixed(30)
+                    )
                     .foregroundStyle(Color.cyan)
                     .annotation(position: .top, alignment: .center, spacing: 5) {
                         Text("\(totalWaterConsumed1)")
@@ -39,9 +101,18 @@ struct Grafic: View {
                             .foregroundColor(.cyan)
                             .fontWeight(.bold)
                     }
+                    
                 }
-                .chartScrollableAxes(.horizontal)
-                
+                .chartOverlay { proxy in
+                    GeometryReader { geometry in
+                        ZStack(alignment: .top) {
+                            Rectangle().fill(.clear).contentShape(Rectangle())
+                                .onTapGesture { location in
+                                    updateSelectedMonth(at: location, proxy: proxy, geometry: geometry)
+                                }
+                        }
+                    }
+                }
                 .chartXAxis {
                     AxisMarks (values: .stride (by: .day)) { value in
                         AxisGridLine().foregroundStyle(.cyan)
@@ -50,59 +121,20 @@ struct Grafic: View {
                                        centered: true)
                     }
                 }
+                
+                .frame(height: 350)
+                Spacer()
             }
-            .frame(height: 350)
-            
-            
-            Spacer()
+            .padding()
         }
-        .padding()
-   } else {
-       VStack {
            
-           GroupBox ( "Bar Chart - Step Count") {
-               Chart(dailyWaterConsumption) {
-                   let totalWaterConsumed1 = $0.totalWaterConsumed
-                   
-                   BarMark(
-                       x: .value("Week Day", $0.date, unit: .day),
-                       y: .value("Step Count", $0.totalWaterConsumed),
-                       width: .fixed(30)                                    )
-                   
-                   .foregroundStyle(Color.cyan)
-                   .annotation(position: .top, alignment: .center, spacing: 5) {
-                       Text("\(totalWaterConsumed1)")
-                           .font(.footnote)
-                           .foregroundColor(.cyan)
-                           .fontWeight(.bold)
-                   }
-               }
-              
-               .chartXAxis {
-                   AxisMarks (values: .stride (by: .day)) { value in
-                       AxisGridLine().foregroundStyle(.cyan)
-                       
-                       AxisValueLabel(format: .dateTime.day(),
-                                      centered: true)
-                   }
-               }
-           }
-           .frame(height: 350)
-           
-           
-           Spacer()
-       }
-       .padding()
-   }
-         
-        
-        
-       
         }
+      
+    }
 }
 
 #Preview {
     Grafic()
-       
+    
 }
 
