@@ -19,7 +19,7 @@ struct Drink_WaterApp: App {
              
                 .preferredColorScheme(.light)
         }
-        .modelContainer(for: [HistoryStruct.self, DailyWaterConsumption.self, HistoryCount.self, WaterConsumptionByDate.self])
+        .modelContainer(for: [DailyWaterConsumption.self, HistoryCount.self, WaterConsumptionByDate.self])
     
     }
 }

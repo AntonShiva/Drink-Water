@@ -11,11 +11,11 @@ import SwiftData
 
 struct Grafic: View {
    @Environment(\.modelContext) var context
-    
+    @AppStorage("count")  var count = 0
     @Environment(\.dismiss) var dismiss
     
     @Query var dailyWaterConsumption: [DailyWaterConsumption]
-    @Query var count: [HistoryCount]
+//    @Query var count: [HistoryCount]
     
     @State var dateFromGrafic: Date?
     
@@ -36,7 +36,7 @@ struct Grafic: View {
                 Text("Закрыть")
             }
 
-        if count.count >= 13     {
+        if count >= 7    {
             VStack {
                 Chart(dailyWaterConsumption) {
 
@@ -57,6 +57,7 @@ struct Grafic: View {
                         }
                     
                 }
+               
                 .chartOverlay { proxy in
                         GeometryReader { geometry in
                             ZStack(alignment: .top) {

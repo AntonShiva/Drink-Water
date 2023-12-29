@@ -10,7 +10,7 @@ struct History: View {
 
     @Environment(\.modelContext) var context
     
-    @Query var items: [HistoryStruct]
+   
     @Query var dailyWaterConsumption: [DailyWaterConsumption]
     @Query var waterConsumptionByDate: [WaterConsumptionByDate]
     

@@ -12,7 +12,7 @@ struct AddWater: View {
     // сохранение истории
     // СвифтДата
     @Environment(\.modelContext) var context
-    @Query var items: [HistoryStruct]
+   
     @Query var dailyWaterConsumption: [DailyWaterConsumption]
     @AppStorage("count")  var count = 0
     @Query var countHistory: [HistoryCount]
@@ -35,7 +35,7 @@ struct AddWater: View {
     // amount of water per day - daily rate
     @AppStorage("dailyRate")  var dailyRate = 1800
     
-    
+   
     
     // initializer of colors for the picker
     init() {
@@ -52,7 +52,7 @@ struct AddWater: View {
             
             VStack {
                 
-                
+                // MARK: заменить это на данные из DailyWaterConsumption 
                 Cel(waterCount: $waterCount)
                 
                 //             MARK: Man and wave
@@ -129,7 +129,7 @@ struct AddWater: View {
                                    let timeFormatter = DateFormatter()
                                    timeFormatter.dateFormat = "HH:mm"
                                    let timeString = timeFormatter.string(from: date)
-                                   
+                           
                                     
                                     if let existingIndex = dailyWaterConsumption.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
                                         dailyWaterConsumption[existingIndex].totalWaterConsumed += selectedML
@@ -142,29 +142,17 @@ struct AddWater: View {
                                         context.insert(countHistory)
                                         context.insert(newConsumption)
                                     }
-                            
-
-                                                     
-                                                         let stepCount = HistoryStruct(porcia: selectedML, date: date)
-                                                       
-                                                         context.insert(stepCount)
+  
                                                     
 
                             if let index = waterConsumptionByDate.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
                                 waterConsumptionByDate[index].porcaica.append(selectedML)
                                 waterConsumptionByDate[index].vremia.append(timeString)
-                                print(waterConsumptionByDate[index].date)
-                                print(waterConsumptionByDate[index].vremia)
-                                print(waterConsumptionByDate[index].porcaica)
+                                
                             } else {
                                 let consumption = WaterConsumptionByDate(date: date, vremia: [timeString], porcaica: [selectedML])
-                                count += 1
-                                let countHistory = HistoryCount(count: count)
-                                context.insert(countHistory)
                                 context.insert(consumption)
-                                print(consumption.date)
-                                print(consumption.vremia)
-                                print(consumption.porcaica)
+                                
                             }
                             
                             
@@ -203,7 +191,12 @@ struct AddWater: View {
                                 .font(.system(size: 30))
                         }
                         
-                        DailyNorm(dailyRate: $dailyRate)
+                       
+                            Text("\(self.dailyRate) мл.")
+                                .foregroundStyle(.cyan)
+                                .font(.system(size: 28))
+                        
+
                         
                         Button {
                             if self.dailyRate < 3000 {
