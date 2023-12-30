@@ -16,14 +16,12 @@ struct History: View {
     
     @State private var date = Date()
     
-    @State private var showFullScreenCover = false
     
     var body: some View {
-        NavigationStack {
+        
             VStack {
                 
-                //            Grafic()
-                
+              
                 DatePicker(
                     "Start Date",
                     selection: $date,
@@ -31,13 +29,7 @@ struct History: View {
                 )
                 .datePickerStyle(.graphical)
                 
-                Button("Исторя График") {
-                                   showFullScreenCover.toggle()
-                                   
-                               }
-                               .fullScreenCover(isPresented: $showFullScreenCover) {
-                                   Grafic()
-                               }
+                
                 
                 List {
                     ForEach(waterConsumptionByDate.sorted(by: { $0.date < $1.date })) { item in
@@ -64,7 +56,7 @@ struct History: View {
                 
             }
             
-        }
+    
     }
 }
 
