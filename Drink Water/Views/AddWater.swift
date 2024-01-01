@@ -35,7 +35,7 @@ struct AddWater: View {
     // amount of water per day - daily rate
     @AppStorage("dailyRate")  var dailyRate = 1800
     
-   
+    @State private var date = Date()
     
     // initializer of colors for the picker
     init() {
@@ -53,7 +53,24 @@ struct AddWater: View {
             VStack {
                 
                 // MARK: заменить это на данные из DailyWaterConsumption 
-                Cel(waterCount: $waterCount)
+//                Cel(waterCount: $waterCount)
+                
+                if let existingIndex = dailyWaterConsumption.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
+                    if dailyWaterConsumption[existingIndex].totalWaterConsumed != nil {
+                      
+                        
+                        Text("\(dailyWaterConsumption[existingIndex].totalWaterConsumed) мл.")
+                            .padding(.top, 20.0)
+                            .foregroundStyle(Color.cyan)
+                            .font(.title)
+                    }
+                } else {
+                    Text("\(0) мл.")
+                        .padding(.top, 20.0)
+                        .foregroundStyle(Color.cyan)
+                        .font(.title)
+                }
+                
                 
                 //             MARK: Man and wave
                 
