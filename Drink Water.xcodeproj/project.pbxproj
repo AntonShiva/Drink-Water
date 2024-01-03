@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D14A8672B45EA8200E174C8 /* Exempl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14A8662B45EA8200E174C8 /* Exempl.swift */; };
 		2D20C2EC2B4477BE0052A8FC /* DailyRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D20C2EB2B4477BE0052A8FC /* DailyRate.swift */; };
 		2D276BA32B0E703C001154D0 /* CustomAlert in Frameworks */ = {isa = PBXBuildFile; productRef = 2D276BA22B0E703C001154D0 /* CustomAlert */; };
 		2D276BB02B1079EA001154D0 /* signal.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2D276BAF2B1079E9001154D0 /* signal.wav */; };
@@ -15,6 +16,7 @@
 		2D395FBF2B28D09600A009A4 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D395FBE2B28D09600A009A4 /* TabBarView.swift */; };
 		2D395FC12B29B32800A009A4 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D395FC02B29B32800A009A4 /* History.swift */; };
 		2D395FF72B2B06DE00A009A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D395FF62B2B06DE00A009A4 /* Assets.xcassets */; };
+		2D50A38A2B458CC100201585 /* Nastroiki.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D50A3892B458CC100201585 /* Nastroiki.swift */; };
 		2D77117B2B3C3EA70029F9C1 /* WaterConsumptionByDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D77117A2B3C3EA70029F9C1 /* WaterConsumptionByDate.swift */; };
 		2D9C468A2B35C7E500318F13 /* DailyWaterConsumption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C46892B35C7E500318F13 /* DailyWaterConsumption.swift */; };
 		2D9C468E2B376E7800318F13 /* HistoryCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C468D2B376E7800318F13 /* HistoryCount.swift */; };
@@ -30,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D14A8662B45EA8200E174C8 /* Exempl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exempl.swift; sourceTree = "<group>"; };
 		2D20C2EB2B4477BE0052A8FC /* DailyRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRate.swift; sourceTree = "<group>"; };
 		2D276BA42B0F764B001154D0 /* Drink-Water-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Drink-Water-Info.plist"; sourceTree = SOURCE_ROOT; };
 		2D276BAF2B1079E9001154D0 /* signal.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = signal.wav; sourceTree = "<group>"; };
@@ -38,6 +41,7 @@
 		2D395FBE2B28D09600A009A4 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		2D395FC02B29B32800A009A4 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		2D395FF62B2B06DE00A009A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2D50A3892B458CC100201585 /* Nastroiki.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nastroiki.swift; sourceTree = "<group>"; };
 		2D77117A2B3C3EA70029F9C1 /* WaterConsumptionByDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterConsumptionByDate.swift; sourceTree = "<group>"; };
 		2D9C46892B35C7E500318F13 /* DailyWaterConsumption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWaterConsumption.swift; sourceTree = "<group>"; };
 		2D9C468D2B376E7800318F13 /* HistoryCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCount.swift; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 				2DF4772B2B22BCFD00B392DB /* Cel.swift */,
 				2D395FBE2B28D09600A009A4 /* TabBarView.swift */,
 				2D395FC02B29B32800A009A4 /* History.swift */,
+				2D50A3892B458CC100201585 /* Nastroiki.swift */,
+				2D14A8662B45EA8200E174C8 /* Exempl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -235,9 +241,11 @@
 			files = (
 				2DD462EA2B0676AE00107F59 /* Extensions.swift in Sources */,
 				2DE9316F2AF95C2700BB3860 /* Wave.swift in Sources */,
+				2D50A38A2B458CC100201585 /* Nastroiki.swift in Sources */,
 				2DE655BB2AFE03050026E4CD /* AddWater.swift in Sources */,
 				2DD462EC2B076CBF00107F59 /* Reminders.swift in Sources */,
 				2D9C468E2B376E7800318F13 /* HistoryCount.swift in Sources */,
+				2D14A8672B45EA8200E174C8 /* Exempl.swift in Sources */,
 				2DE931622AF959FE00BB3860 /* ContentView.swift in Sources */,
 				2D9C468A2B35C7E500318F13 /* DailyWaterConsumption.swift in Sources */,
 				2D395FBD2B28CFF000A009A4 /* Tab.swift in Sources */,

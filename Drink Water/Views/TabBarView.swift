@@ -27,7 +27,7 @@ import SwiftUI
             AddWater()
                 .tag(Tab.home)
                 
-            History()
+            Nastroiki()
                 .tag(Tab.history)
         }
         
