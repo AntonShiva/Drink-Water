@@ -12,11 +12,15 @@ struct Nastroiki: View {
     @State private var date = Date()
     
     var body: some View {
-        VStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.background
+                .ignoresSafeArea()
             
-          
-           
+            VStack {
+                
+                
+                
+            }
         }
     }
 }

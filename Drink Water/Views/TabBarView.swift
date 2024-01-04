@@ -17,37 +17,65 @@ import SwiftUI
     
     
     
-    var body: some View {
-        
-        TabView(selection: $selectedTab) {
-           
-           Reminders()
-                .tag(Tab.reminders)
-            
-            AddWater()
-                .tag(Tab.home)
+     var body: some View {
+//         ZStack {
+//             Color.bgTabBar
+//                 .ignoresSafeArea()
+         VStack {
+             
+                 VStack {
+                     
+                     TabView(selection: $selectedTab) {
+                         
+                         AddWater()
+                             .tag(Tab.home)
+                         
+                         Reminders()
+                             .tag(Tab.reminders)
+                         
+                         
+                         History()
+                             .tag(Tab.history)
+                         
+                         Nastroiki()
+                             .tag(Tab.nastroiki)
+                     }
+                     
+                     
+                 }
+                 
+                 
+                 
+                 VStack {
+                     ZStack {
+                         Color.bgTabBar
+                             .ignoresSafeArea()
+                         HStack(spacing: 15) {
+                             ForEach(Tab.allCases) { tab in
+                                 TabButton(tab: tab, selectedTab: $selectedTab,  namespace: namespace)
+                             }
+                         }
+                         //                         .padding()
+                         .background(
+                            Capsule()
+                                .fill(Color.bgTabBar)
+                                .frame(height: 65)
+                                .frame(width: 340)
+                         )
+                         .frame(height: 50)
+                         .shadow( radius: 9)
+                     }
+                     
+                 }
                 
-            Nastroiki()
-                .tag(Tab.history)
-        }
-        
-        
-        HStack(spacing: 40) {
-            ForEach(Tab.allCases) { tab in
-                TabButton(tab: tab, selectedTab: $selectedTab,  namespace: namespace)
-            }
-        }
-        .padding()
-            .background(
-                Capsule()
-                    .fill(Color.bgTabBar)
-                    .frame(height: 65)
-                    .frame(width: 340)
-            )
-            .frame(height: 70)
-            .shadow(radius: 30)
-        
-        
+//                                  .padding(.top, 20.0)
+                 .frame(height: 75)
+                 
+             
+             
+
+         }
+         .background(Color.bgTabBar)
     }
     
     private struct TabButton: View {
@@ -62,13 +90,15 @@ import SwiftUI
         @State private var rotationAngle: CGFloat = 0
         
         var body: some View {
+          
+            
             Button {
                 withAnimation(.easeInOut) {
                     selectedTab = tab
                    
                 }
                 
-                selectedOffset = -35
+                selectedOffset = -55
                 if tab < selectedTab {
                     rotationAngle += 360
                 } else {
@@ -93,7 +123,7 @@ import SwiftUI
                     HStack(spacing: 20) {
                         Image(systemName: tab.icon)
                             .font(.system(size: 30, weight: .semibold, design: .rounded))
-                            .foregroundColor(isSelected ? tab.color : .blyL)
+                            .foregroundColor(isSelected ? .bgTabBar : .blyL)
                             .rotationEffect(.degrees(rotationAngle))
                             .scaleEffect(isSelected ? 1 : 0.9)
                             .animation(.easeInOut, value: rotationAngle)
@@ -114,6 +144,7 @@ import SwiftUI
                 }
             }
             .buttonStyle(.plain)
+            
         }
         
         private var isSelected: Bool {

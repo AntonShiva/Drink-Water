@@ -8,11 +8,14 @@
 import SwiftUI
 
 extension Color {
-    static let background = LinearGradient(gradient: Gradient(colors: [Color("darkBly"), Color("bly"), Color("darkBly"), Color("bly"), Color("darkBly")]), startPoint: .top, endPoint: .bottom)
+    static let background = LinearGradient(gradient: Gradient(colors: [ Color("darkBly"), Color("darkBly"), Color("bly"), Color("darkBly"), Color("darkBly"), Color("darkBly"), Color("bly"),  Color("darkBly"), Color("darkBly"),Color("darkBly"), Color("bly"), Color("darkBly"), Color("darkBly"), Color("darkBly"), Color("bly"), Color("darkBly"),Color("darkBly"), Color("darkBly"), Color("bly"), /*Color("darkBly"), Color("darkBly"),Color("darkBly"),*/Color("darkBly"),Color("darkBly"),Color("darkBly"), Color("bly"), Color("SvetloCyan")]), startPoint: .top, endPoint: .bottom)
+    
+    static let backgroundTab = LinearGradient(gradient: Gradient(colors: [Color("bly"), Color("darkBly"), Color("bly"), Color("darkBly")]), startPoint: .top, endPoint: .bottom)
     static let manColor = Color("Light cyanide")
     static let bgTabBar = Color("SvetloCyan")
     static let bgTabBarDark = Color("darkBly")
     static let blyL = Color("bly")
+    static let blyVtoroi = Color("vtoroi")
     
 }
 

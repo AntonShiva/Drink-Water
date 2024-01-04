@@ -32,7 +32,7 @@ struct History: View {
                 VStack {
                     RoundedRectangle(cornerRadius: 15)
                                       .fill(Color.cyan)
-                                      .frame(width: 370, height: 310, alignment: .center)
+                                      .frame(width: 370, height: 330, alignment: .center)
                                       .overlay(
                                   DatePicker(
                                       "Start Date",
@@ -41,7 +41,7 @@ struct History: View {
                                           
                                   )
                                   .environment(\.locale, Locale(identifier: "ru_RU"))
-                                  .frame(width: 340, height: 294, alignment: .center)
+                                  .frame(width: 340, height: 330, alignment: .center)
                                   .clipped()
                                   .tint(.bly)
                                   .datePickerStyle(.graphical)
@@ -69,7 +69,7 @@ struct History: View {
                                         HStack {
                                             Image("glass1")
                                                 .resizable()
-                                                .frame(width: 40, height: 40)
+                                                .frame(width: 30, height: 30)
                                                 .padding(.leading, 15.0)
                                             Text("-  \(item.porcaica[index]) мл")
                                                 .foregroundColor(.cyan)
@@ -83,7 +83,7 @@ struct History: View {
                                         }
                                        
                                       
-                                        .frame(width: 300.0, height: 60)
+                                        .frame(width: 300.0, height: 50)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 10)
                                                 .stroke(Color.cyan, lineWidth: 2)
@@ -103,9 +103,10 @@ struct History: View {
                     Spacer()
                 }
                 
-                
+               
             }
             .padding(.top, 30)
+           
         }
     }
 }

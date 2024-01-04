@@ -13,31 +13,39 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
         lhs.rawValue < rhs.rawValue
     }
     
-    case reminders, home, history
+    case home, reminders, history, nastroiki
     
     internal var id: Int { rawValue }
     
     var icon: String {
         switch self {
+            
+        case .home:
+                    return "drop.fill"
+            
         case .reminders:
             return "bell.fill"
-        case .home:
-            return "drop.fill"
+        
         case .history:
             return "calendar"
+        case .nastroiki:
+            return "gear"
         
         }
     }
     
     var title: String {
         switch self {
-        case .reminders:
-            return ""
+            
         case .home:
             return ""
-        case .history:
+        case .reminders:
             return ""
        
+        case .history:
+            return ""
+        case .nastroiki:
+            return ""
         }
     }
     
@@ -45,13 +53,17 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
     
     var color: Color {
         switch self {
-        case .reminders:
-            return .teal
+          
         case .home:
             return .cyan
-        case .history:
+            
+        case .reminders:
             return .teal
        
+        case .history:
+            return .teal
+        case .nastroiki:
+            return .cyan
         }
     }
 }

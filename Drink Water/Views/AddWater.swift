@@ -59,8 +59,6 @@ struct AddWater: View {
                    
                    if let existingIndex = dailyWaterConsumption.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
                        
-                       
-                       
                        Text("\(dailyWaterConsumption[existingIndex].totalWaterConsumed) мл.")
                            .padding(.top, 20.0)
                            .foregroundStyle(Color.cyan)
@@ -80,17 +78,17 @@ struct AddWater: View {
                        ZStack(alignment: .center) {
                            Rectangle()
                                .fill(Color.manColor.opacity(0.8))
-                               .frame(width: 300, height: 400)
+                               .frame(width: 250, height: 350)
                            
                            Wave(offset: Angle(degrees: self.waveOffset.degrees), percent: percet / 95.0)
                                .fill(Color.cyan)
-                               .frame(width: 300, height: 410)
+                               .frame(width: 250, height: 360)
                                .offset(x: -30, y: 8)
                            
                            Wave(offset: Angle(degrees: self.waveOffset2.degrees), percent: percet / 95.0)
                                .fill(Color.cyan)
                                .opacity(0.5)
-                               .frame(width: 300, height: 410)
+                               .frame(width: 250, height: 360)
                                .offset(x: 5, y: 8)
                        }
                        .onAppear {
@@ -101,10 +99,10 @@ struct AddWater: View {
                        }
                        
                        .mask {
-                           Image("man")
+                           Image("woman")
                                .resizable()
                                .aspectRatio(contentMode: .fit)
-                               .frame(width: 300, height: 400)
+                               .frame(width: 250, height: 350)
                            
                        }
                    }
@@ -139,6 +137,7 @@ struct AddWater: View {
                                if self.waterCount < self.dailyRate {
                                    let chislo = self.dailyRate / selectedML
                                    percet += Double(100 / chislo)
+                                   print(percet)
                                }
                                self.waterCount += selectedML
                                
