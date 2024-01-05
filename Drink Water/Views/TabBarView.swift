@@ -156,6 +156,7 @@ import SwiftUI
 #Preview {
     TabBarView()
         .environmentObject(LocalNotificationManager())
+       
 }
 
 

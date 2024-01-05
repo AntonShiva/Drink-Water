@@ -11,15 +11,15 @@ import SwiftData
 @main
 struct Drink_WaterApp: App {
     @StateObject var lnManager = LocalNotificationManager()
-  
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(lnManager)
-             
+                
                 .preferredColorScheme(.light)
         }
-        .modelContainer(for: [DailyWaterConsumption.self, HistoryCount.self, WaterConsumptionByDate.self, DailyRate.self])
+        .modelContainer(for: [DailyWaterConsumption.self, HistoryCount.self, WaterConsumptionByDate.self, DailyRate.self, Pol.self])
     
     }
 }

@@ -13,6 +13,8 @@ struct AddWater: View {
     // СвифтДата
     @Environment(\.modelContext) var context
     
+    @Query var pol: [Pol]
+    
     @Query var dailyWaterConsumption: [DailyWaterConsumption]
     @AppStorage("count")  var count = 0
     @Query var countHistory: [HistoryCount]
@@ -29,6 +31,7 @@ struct AddWater: View {
     @State private var selectedML = 200
    
     
+    
     @State private var isPresented = false
     
     // amount of water per day - daily rate
@@ -40,6 +43,7 @@ struct AddWater: View {
     
     // initializer of colors for the picker
     init() {
+       
         UISegmentedControl.appearance().selectedSegmentTintColor =  #colorLiteral(red: 0.2642083466, green: 0.7893971801, blue: 1, alpha: 1)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
@@ -63,6 +67,9 @@ struct AddWater: View {
                            .foregroundStyle(Color.cyan)
                            .font(.title)
                        
+                       
+                       
+                       
                    } else {
                        Text("\(0) мл.")
                            .padding(.top, 20.0)
@@ -82,13 +89,13 @@ struct AddWater: View {
                            Wave(offset: Angle(degrees: self.waveOffset.degrees), percent: percet / 95.0)
                                .fill(Color.cyan)
                                .frame(width: 250, height: 360)
-                               .offset(x: -30, y: 8)
+                               .offset(x: -30, y: 15)
                            
                            Wave(offset: Angle(degrees: self.waveOffset2.degrees), percent: percet / 95.0)
                                .fill(Color.cyan)
                                .opacity(0.5)
                                .frame(width: 250, height: 360)
-                               .offset(x: 5, y: 8)
+                               .offset(x: 5, y: 15)
                        }
                        .onAppear {
                            withAnimation(Animation.linear(duration: 1).repeatForever(autoreverses: false)) {
@@ -98,12 +105,18 @@ struct AddWater: View {
                        }
                        
                        .mask {
-                           Image("woman")
-                               .resizable()
-                               .aspectRatio(contentMode: .fit)
-                               .frame(width: 250, height: 350)
-                           
-                       }
+                                               if !pol.isEmpty {
+                                                   Image(   pol[0].pol ? "man" : "woman" )
+                                                       .resizable()
+                                                       .aspectRatio(contentMode: .fit)
+                                                       .frame(width: 250, height: 350)
+                                               } else {
+                                                  Image("man")
+                                                       .resizable()
+                                                       .aspectRatio(contentMode: .fit)
+                                                       .frame(width: 250, height: 350)
+                                               }
+                                           }
                    }
                    //_____________________________________________
                    
@@ -285,5 +298,5 @@ struct AddWater: View {
 
    #Preview {
        AddWater()
-       
+           
    }

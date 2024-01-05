@@ -10,10 +10,12 @@ import SwiftData
 
 struct ContentView: View {
     @EnvironmentObject var lnManager: LocalNotificationManager
-
+   
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.modelContext) var context
 
+    
+    
     var body: some View {
        
         
