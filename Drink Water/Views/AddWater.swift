@@ -27,8 +27,7 @@ struct AddWater: View {
     // picker
     var ml = [100, 150, 200, 250, 300]
     @State private var selectedML = 200
-    //    @AppStorage("waterCount")
-    @State private var waterCount = 0
+   
     
     @State private var isPresented = false
     
@@ -134,12 +133,6 @@ struct AddWater: View {
                                .foregroundStyle(.cyan)
                            
                            Button {
-                               if self.waterCount < self.dailyRate {
-                                   let chislo = self.dailyRate / selectedML
-                                   percet += Double(100 / chislo)
-                                   print(percet)
-                               }
-                               self.waterCount += selectedML
                                
                                let date = Date()
                                
@@ -151,16 +144,37 @@ struct AddWater: View {
                                
                                if let existingIndex = dailyWaterConsumption.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
                                    dailyWaterConsumption[existingIndex].totalWaterConsumed += selectedML
-                                   print(count)
+                                   
+                                   
+                                   
+                                   
+                                   let daily: Double = Double(self.dailyRate)
+                                   let total: Double = Double(dailyWaterConsumption[existingIndex].totalWaterConsumed)
+                                   
+                                   let chislo: Double = Double( daily / total)
+                                   let procent: Double = Double( 100 / chislo)
+                                  
+                                   percet = procent
+                                  
                                    
                                } else {
                                    let newConsumption = DailyWaterConsumption(totalWaterConsumed: selectedML, date: date)
                                    count += 1
                                    let countHistory = HistoryCount.init(count: count)
+                                   
+                                   let daily: Double = Double(self.dailyRate)
+                                   let selected: Double = Double(selectedML)
+                                   
+                                   let chislo: Double = daily / selected
+                                  
+                                   let procent = Double( 100 / chislo)
+                                   
+                                   percet = procent
+                                   
+                                   
                                    context.insert(countHistory)
                                    context.insert(newConsumption)
                                }
-                               
                                
                                
                                if let index = waterConsumptionByDate.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
@@ -217,6 +231,18 @@ struct AddWater: View {
                            
                            if !dailyRateSave.isEmpty {
                                Text("\(dailyRateSave[0].dailyRate)")
+                                   .onChange(of: dailyRateSave[0].dailyRate) { newValue in
+                                       if let existingIndex = dailyWaterConsumption.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
+                                           
+                                           let daily: Double = Double(newValue)
+                                           let total: Double = Double(dailyWaterConsumption[existingIndex].totalWaterConsumed)
+                                           
+                                           let chislo: Double = Double( daily / total)
+                                           let procent: Double = Double( 100 / chislo)
+                                           percet = procent
+                                           
+                                       }
+                                     }
                                    .foregroundStyle(.cyan)
                                    .font(.system(size: 28))
                            } else {
