@@ -56,21 +56,25 @@ struct AddWater: View {
                    .ignoresSafeArea()
                
                VStack {
-                   
-                   // MARK: заменить это на данные из DailyWaterConsumption
-                   //                Cel(waterCount: $waterCount)
-                   
+                  
                    if let existingIndex = dailyWaterConsumption.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
                        
                        Text("\(dailyWaterConsumption[existingIndex].totalWaterConsumed) мл.")
                            .padding(.top, 20.0)
                            .foregroundStyle(Color.cyan)
                            .font(.title)
+                           .onAppear(perform: {
+                               
+                               let daily: Double = Double(self.dailyRate)
+                               let total: Double = Double(dailyWaterConsumption[existingIndex].totalWaterConsumed)
+                               
+                               let chislo: Double = Double( daily / total)
+                               let procent: Double = Double( 100 / chislo)
+                              
+                               percet = procent
+                           })
                        
-                       
-                       
-                       
-                   } else {
+                     } else {
                        Text("\(0) мл.")
                            .padding(.top, 20.0)
                            .foregroundStyle(Color.cyan)
@@ -102,6 +106,7 @@ struct AddWater: View {
                                self.waveOffset = Angle(degrees: 360)
                                self.waveOffset2 = Angle(degrees: -180)
                            }
+
                        }
                        
                        .mask {

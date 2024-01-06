@@ -43,10 +43,18 @@ struct Nastroiki: View {
                                 Text("Мужской")
                                     .foregroundStyle(.cyan)
                                     .font(.system(size: 20))
-                                Image("manCyan")
-                                    .resizable()
-                                    .frame(width: 84, height: 170)
-                                    .aspectRatio(contentMode: .fill)
+                                if !pol.isEmpty {
+                                    Image(pol[0].pol ? "manCyanGal" : "manCyanl")
+                                        .resizable()
+                                        .frame(width: 110, height: 170)
+                                        .aspectRatio(contentMode: .fill)
+                                } else {
+                                   Image("manCyan")
+                                        .resizable()
+                                        .frame(width: 110, height: 170)
+                                        .aspectRatio(contentMode: .fill)
+                                }
+                                
                             }
                         }
                         
@@ -62,10 +70,18 @@ struct Nastroiki: View {
                                 Text("Женский")
                                     .foregroundStyle(.cyan)
                                     .font(.system(size: 20))
-                                Image("womanCyan")
-                                    .resizable()
-                                    .frame(width: 110, height: 170)
-                                    .aspectRatio(contentMode: .fill)
+                                if !pol.isEmpty {
+                                    Image(pol[0].pol ? "womanCyan" : "womanCyanGal")
+                                        .resizable()
+                                        .frame(width: 110, height: 170)
+                                        .aspectRatio(contentMode: .fill)
+                                } else {
+                                   Image("womanCyan")
+                                        .resizable()
+                                        .frame(width: 110, height: 170)
+                                        .aspectRatio(contentMode: .fill)
+                                }
+                               
                             }
                         }
                     }
@@ -80,6 +96,9 @@ struct Nastroiki: View {
                 .padding(.top, 40.0)
 
                 Spacer()
+                
+                
+                
             }
             
         }
