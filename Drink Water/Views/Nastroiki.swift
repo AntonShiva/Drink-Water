@@ -11,6 +11,8 @@ import AVFoundation
 
 struct Nastroiki: View {
     @Environment(\.modelContext) var context
+    @EnvironmentObject var lnManager: LocalNotificationManager
+    
      @Query var pol: [Pol]
     
     
@@ -148,7 +150,10 @@ struct Nastroiki: View {
                         galochka = 1
                         selectedSound = "signal.wav"
                         playSounds("signal.wav")
-                       
+                        // Обновите мелодию в ожидающих запросах
+                        Task {
+                                        await lnManager.updateNotificationSound(newSound: selectedSound)
+                                    }
                     } label: {
                         HStack {
                             Text("Птици и ручей")
@@ -168,6 +173,9 @@ struct Nastroiki: View {
                         galochka = 2
                         playSounds("More.wav")
                         selectedSound = "More.wav"
+                        Task {
+                                        await lnManager.updateNotificationSound(newSound: selectedSound)
+                                    }
                     } label: {
                         HStack {
                             Text("Море и чайки")
@@ -187,6 +195,9 @@ struct Nastroiki: View {
                         galochka = 3
                         playSounds("DojdiUCamina.wav")
                         selectedSound = "DojdiUCamina.wav"
+                        Task {
+                                        await lnManager.updateNotificationSound(newSound: selectedSound)
+                                    }
                     } label: {
                         HStack {
                             Text("Дождь у камина")
@@ -206,7 +217,9 @@ struct Nastroiki: View {
                             galochka = 4
                             playSounds("ShumVodopadaPtici.wav")
                             selectedSound = "ShumVodopadaPtici.wav"
-                            
+                            Task {
+                                            await lnManager.updateNotificationSound(newSound: selectedSound)
+                                        }
                         } label: {
                             HStack {
                                 Text("Шум водопада")
@@ -226,7 +239,9 @@ struct Nastroiki: View {
                         galochka = 5
                         playSounds("TriKapli.wav")
                         selectedSound = "TriKapli.wav"
-                        
+                        Task {
+                                        await lnManager.updateNotificationSound(newSound: selectedSound)
+                                    }
                     } label: {
                         HStack {
                             Text("Три капли")
@@ -247,6 +262,9 @@ struct Nastroiki: View {
                     Button {
                         galochka = 6
                         selectedSound = ""
+                        Task {
+                                        await lnManager.updateNotificationSound(newSound: selectedSound)
+                                    }
                         if audioPlayer != nil && audioPlayer.isPlaying {
                             audioPlayer.stop()
                         }
@@ -287,5 +305,5 @@ struct Nastroiki: View {
 
 #Preview {
     Nastroiki()
-    
+        .environmentObject(LocalNotificationManager())
 }

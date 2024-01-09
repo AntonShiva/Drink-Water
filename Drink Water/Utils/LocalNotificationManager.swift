@@ -32,6 +32,37 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
         return [.sound, .banner]
     }
     
+    // Метод для обновления мелодии в массиве pendingRequests
+    func updateNotificationSound(newSound: String) async {
+            for request in pendingRequests {
+                // Новое содержимое уведомления с обновленной мелодией
+                let newContent = UNMutableNotificationContent()
+                newContent.title = request.content.title
+                newContent.body = request.content.body
+                newContent.subtitle = request.content.subtitle
+                newContent.attachments = request.content.attachments
+                newContent.userInfo = request.content.userInfo
+                newContent.sound = UNNotificationSound(named: UNNotificationSoundName(newSound))
+                
+                // Режим "Без звука"
+                if newSound.isEmpty {
+                    newContent.sound = nil 
+                }
+                
+                // Обновление запроса с новым содержимым
+                let newRequest = UNNotificationRequest(identifier: request.identifier, content: newContent, trigger: request.trigger)
+                
+                // Удалить старый запрос
+                notificationCenter.removePendingNotificationRequests(withIdentifiers: [request.identifier])
+                
+                // Добавить обновленный запрос
+                try? await notificationCenter.add(newRequest)
+            }
+            
+            // Получение обновленного массива ожидающих запросов
+            await getPendingRequests()
+        }
+    
     // запросить авторизацию (разрешение) для отправки и отображения уведомлений
     func requestAuthorization() async throws {
         try await notificationCenter

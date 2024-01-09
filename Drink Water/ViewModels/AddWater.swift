@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-// View для добавления воды
+
 struct AddWater: View {
     // Свойства для работы с данными
     @Environment(\.modelContext) var context
