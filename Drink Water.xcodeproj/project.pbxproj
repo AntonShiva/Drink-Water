@@ -30,6 +30,7 @@
 		2DF9B7972B4C67F3000809DE /* More.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B7962B4C67F3000809DE /* More.wav */; };
 		2DF9B79B2B4D674F000809DE /* DojdiUCamina.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B79A2B4D674F000809DE /* DojdiUCamina.wav */; };
 		2DF9B79D2B4D7037000809DE /* TriKapli.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B79C2B4D7037000809DE /* TriKapli.wav */; };
+		2DF9B7A22B4DB45A000809DE /* ShumVodopadaPtici.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9B7A12B4DB45A000809DE /* ShumVodopadaPtici.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		2DF9B7962B4C67F3000809DE /* More.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = More.wav; sourceTree = "<group>"; };
 		2DF9B79A2B4D674F000809DE /* DojdiUCamina.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DojdiUCamina.wav; sourceTree = "<group>"; };
 		2DF9B79C2B4D7037000809DE /* TriKapli.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = TriKapli.wav; sourceTree = "<group>"; };
+		2DF9B7A12B4DB45A000809DE /* ShumVodopadaPtici.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ShumVodopadaPtici.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 			children = (
 				2DF9B79A2B4D674F000809DE /* DojdiUCamina.wav */,
 				2DF9B7962B4C67F3000809DE /* More.wav */,
+				2DF9B7A12B4DB45A000809DE /* ShumVodopadaPtici.wav */,
 				2D276BAF2B1079E9001154D0 /* signal.wav */,
 				2DF9B79C2B4D7037000809DE /* TriKapli.wav */,
 			);
@@ -85,7 +88,7 @@
 		2D69C4642B26246D00CAFD70 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				2DE9316E2AF95C2700BB3860 /* Wave.swift */,
+				2DE655BA2AFE03050026E4CD /* AddWater.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -102,7 +105,7 @@
 		2DE655B92AFE01C90026E4CD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2DE655BA2AFE03050026E4CD /* AddWater.swift */,
+				2DE9316E2AF95C2700BB3860 /* Wave.swift */,
 				2DD462EB2B076CBF00107F59 /* Reminders.swift */,
 				2DE931612AF959FE00BB3860 /* ContentView.swift */,
 				2D395FBE2B28D09600A009A4 /* TabBarView.swift */,
@@ -233,6 +236,7 @@
 				2D276BB02B1079EA001154D0 /* signal.wav in Resources */,
 				2D395FF72B2B06DE00A009A4 /* Assets.xcassets in Resources */,
 				2DF9B79B2B4D674F000809DE /* DojdiUCamina.wav in Resources */,
+				2DF9B7A22B4DB45A000809DE /* ShumVodopadaPtici.wav in Resources */,
 				2DE931672AF95A0000BB3860 /* Preview Assets.xcassets in Resources */,
 				2DF9B7972B4C67F3000809DE /* More.wav in Resources */,
 			);

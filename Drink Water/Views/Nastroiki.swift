@@ -131,13 +131,16 @@ struct Nastroiki: View {
             )
                 .padding(.top, 40.0)
 
-                Spacer()
+           
                 
                 VStack {
-                    Text("Выбрать мелодию:")
+                    Text("Выбор мелодии:")
                         .padding(5.0)
                         .foregroundStyle(.cyan)
-                        .font(.system(size: 25))
+                        .font(.system(size: 23))
+                    
+                    Divider()
+                        .background(.cyan)
                     
                     VStack (alignment: .leading) {
                     
@@ -150,10 +153,10 @@ struct Nastroiki: View {
                         HStack {
                             Text("Птици и ручей")
                                 .foregroundStyle(.cyan)
-                                .font(.system(size: 23))
+                                .font(.system(size: 20))
                             Image( systemName: galochka == 1 ? "checkmark.circle" : "circle" )
                                 .foregroundStyle(.cyan)
-                                .font(.system(size: 20))
+                                .font(.system(size: 18))
                         }
                     }
                      
@@ -169,10 +172,10 @@ struct Nastroiki: View {
                         HStack {
                             Text("Море и чайки")
                                 .foregroundStyle(.cyan)
-                                .font(.system(size: 23))
+                                .font(.system(size: 20))
                             Image( systemName: galochka == 2 ? "checkmark.circle" : "circle" )
                                 .foregroundStyle(.cyan)
-                                .font(.system(size: 20))
+                                .font(.system(size: 18))
                         }
                     }
                     
@@ -188,19 +191,39 @@ struct Nastroiki: View {
                         HStack {
                             Text("Дождь у камина")
                                 .foregroundStyle(.cyan)
-                                .font(.system(size: 23))
+                                .font(.system(size: 20))
                             Image( systemName: galochka == 3 ? "checkmark.circle" : "circle" )
                                 .foregroundStyle(.cyan)
-                                .font(.system(size: 20))
+                                .font(.system(size: 18))
                         }
                         
                     }
+                        
+                        Divider()
+                            .background(.cyan)
+                        
+                        Button {
+                            galochka = 4
+                            playSounds("ShumVodopadaPtici.wav")
+                            selectedSound = "ShumVodopadaPtici.wav"
+                            
+                        } label: {
+                            HStack {
+                                Text("Шум водопада")
+                                    .foregroundStyle(.cyan)
+                                    .font(.system(size: 20))
+                                Image( systemName: galochka == 4 ? "checkmark.circle" : "circle" )
+                                    .foregroundStyle(.cyan)
+                                    .font(.system(size: 18))
+                            }
+                            
+                        }
                     
                     Divider()
                         .background(.cyan)
                     
                     Button {
-                        galochka = 4
+                        galochka = 5
                         playSounds("TriKapli.wav")
                         selectedSound = "TriKapli.wav"
                         
@@ -208,19 +231,21 @@ struct Nastroiki: View {
                         HStack {
                             Text("Три капли")
                                 .foregroundStyle(.cyan)
-                                .font(.system(size: 23))
-                            Image( systemName: galochka == 4 ? "checkmark.circle" : "circle" )
-                                .foregroundStyle(.cyan)
                                 .font(.system(size: 20))
+                            Image( systemName: galochka == 5 ? "checkmark.circle" : "circle" )
+                                .foregroundStyle(.cyan)
+                                .font(.system(size: 18))
                         }
                         
                     }
+                        
+                      
                     
                     Divider()
                         .background(.cyan)
                     
                     Button {
-                        galochka = 5
+                        galochka = 6
                         selectedSound = ""
                         if audioPlayer != nil && audioPlayer.isPlaying {
                             audioPlayer.stop()
@@ -229,10 +254,10 @@ struct Nastroiki: View {
                         HStack {
                             Text("Без звука")
                                 .foregroundStyle(.cyan)
-                                .font(.system(size: 23))
-                            Image( systemName: galochka == 5 ? "checkmark.circle" : "circle" )
-                                .foregroundStyle(.cyan)
                                 .font(.system(size: 20))
+                            Image( systemName: galochka == 6 ? "checkmark.circle" : "circle" )
+                                .foregroundStyle(.cyan)
+                                .font(.system(size: 18))
                         }
                         
                     }
@@ -240,12 +265,13 @@ struct Nastroiki: View {
                     .padding(.leading, 20.0)
                 }
                 
-                .padding()
-                .frame(width: 300.0, height: 330)
+
+                .frame(width: 300.0, height: 340)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.cyan, lineWidth: 2)
                 )
+                .padding(.top, 20.0)
                 Spacer()
             }
             
