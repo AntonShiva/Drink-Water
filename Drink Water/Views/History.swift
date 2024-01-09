@@ -19,7 +19,7 @@ struct History: View {
     func formatDate(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.dateFormat = "MM LLLL yyyy"  // Формат отображения месяца и года на русском
+        dateFormatter.dateFormat = "dd LLLL yyyy"
 
         return dateFormatter.string(from: date)
     }
@@ -43,7 +43,9 @@ struct History: View {
                                   .environment(\.locale, Locale(identifier: "ru_RU"))
                                   .frame(width: 340, height: 330, alignment: .center)
                                   .clipped()
-                                  .tint(.bly)
+                                  .tint(.calendar)
+                                  
+                                 
                                   .datePickerStyle(.graphical)
                                   .background(Color.cyan)
                                   .padding(20)
@@ -55,16 +57,33 @@ struct History: View {
                 }
                 
                 VStack {
+                    
+                    if let existingIndex = dailyWaterConsumption.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
+                        
+                        Text("Всего выпито  \(dailyWaterConsumption[existingIndex].totalWaterConsumed) мл.")
+                            .padding(.top, 20.0)
+                            .foregroundStyle(Color.cyan)
+                            .font(.title)
+                        
+                      } else {
+                        Text("Всего выпито \(0) мл.")
+                            .padding(.top, 20.0)
+                            .foregroundStyle(Color.cyan)
+                            .font(.title)
+                    }
+                    
                     List {
                         ForEach(waterConsumptionByDate.sorted(by: { $0.date < $1.date })) { item in
                             if item.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) {
+                                
                                 Section(header: Text(formatDate(item.date))
+                                        
                                                                             .font(.title)
                                                                             .foregroundColor(.cyan)
                                                                             
                                                                             .frame(maxWidth: .infinity, alignment: .center)
                                                                             .textCase(.none))
-                                {
+                                { 
                                     ForEach(item.vremia.indices, id: \.self) { index in
                                         HStack {
                                             Image("glass1")

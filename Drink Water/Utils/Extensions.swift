@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Color {
-    static let background = LinearGradient(gradient: Gradient(colors: [ Color("darkBly"), Color("darkBly"), Color("bly"), Color("darkBly"), Color("darkBly"), Color("darkBly"), Color("bly"),  Color("darkBly"), Color("darkBly"),Color("darkBly"), Color("bly"), Color("darkBly"), Color("darkBly"), Color("darkBly"), Color("bly"), Color("darkBly"),Color("darkBly"), Color("darkBly"), Color("bly"), /*Color("darkBly"), Color("darkBly"),Color("darkBly"),*/Color("darkBly"),Color("darkBly"),Color("darkBly"), Color("bly"), Color("SvetloCyan")]), startPoint: .top, endPoint: .bottom)
+    static let background = LinearGradient(gradient: Gradient(colors: [ Color("darkBly"),  Color("bly"),Color("darkBly"), Color("darkBly"),Color("darkBly"), Color("darkBly"),Color("darkBly"),Color("darkBly"), Color("darkBly"),Color("darkBly"),Color("darkBly"), Color("bly"), Color("darkBly"),Color("darkBly"),Color("darkBly"), Color("darkBly"),Color("darkBly"),Color("darkBly"), Color("darkBly"),Color("darkBly"),Color("darkBly"), Color("bly"), Color("SvetloCyan")]), startPoint: .top, endPoint: .bottom)
     
     static let backgroundTab = LinearGradient(gradient: Gradient(colors: [Color("bly"), Color("darkBly"), Color("bly"), Color("darkBly")]), startPoint: .top, endPoint: .bottom)
     static let manColor = Color("Light cyanide")

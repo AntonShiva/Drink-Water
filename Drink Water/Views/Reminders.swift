@@ -21,6 +21,7 @@ struct Reminders: View {
     
     @State private var isOn = true
     
+    @AppStorage("selectedSound") var selectedSound: String = "signal.wav"
     
     
     @State private var showFancy = false
@@ -129,7 +130,7 @@ struct Reminders: View {
                                                                                   body: vremia,
                                                                                   dateComponents: dateComponents,
                                                                                   repeats: true)
-                                        await lnManager.schedule(localNotification: localNotification)
+                                        await lnManager.schedule(localNotification: localNotification, selectedSound: selectedSound)
                                     }
                                 } label: {
                                     Text("Сохранить")

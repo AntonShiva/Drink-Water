@@ -56,7 +56,7 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
         }
     }
     // назначает уведомление
-    func schedule(localNotification: LocalNotification) async {
+    func schedule(localNotification: LocalNotification, selectedSound: String) async {
         let content = UNMutableNotificationContent()
         content.title = localNotification.title
         content.body = localNotification.body
@@ -78,7 +78,11 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
             content.userInfo = userInfo
         }
         //Play custom sound
-        content.sound = UNNotificationSound(named: UNNotificationSoundName("signal.wav"))
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(selectedSound))
+        
+        if selectedSound.isEmpty {
+            content.sound = nil // Установите nil для звука, если выбран "Без звука"
+        }
         
         if localNotification.scheduleType == .time {
         guard let timeInterval = localNotification.timeInterval else { return }

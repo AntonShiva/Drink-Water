@@ -16,9 +16,11 @@ struct AddWater: View {
     @Query var pol: [Pol]
     
     @Query var dailyWaterConsumption: [DailyWaterConsumption]
-    @AppStorage("count")  var count = 0
-    @Query var countHistory: [HistoryCount]
+  
+  
     @Query var waterConsumptionByDate: [WaterConsumptionByDate]
+    
+   
     
     // wave
     @State private var percet = 0.0
@@ -158,39 +160,24 @@ struct AddWater: View {
                                let timeFormatter = DateFormatter()
                                timeFormatter.dateFormat = "HH:mm"
                                let timeString = timeFormatter.string(from: date)
-                               
-                               
                                if let existingIndex = dailyWaterConsumption.firstIndex(where: { $0.date.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) }) {
                                    dailyWaterConsumption[existingIndex].totalWaterConsumed += selectedML
-                                   
-                                   
-                                   
                                    
                                    let daily: Double = Double(self.dailyRate)
                                    let total: Double = Double(dailyWaterConsumption[existingIndex].totalWaterConsumed)
                                    
                                    let chislo: Double = Double( daily / total)
                                    let procent: Double = Double( 100 / chislo)
-                                  
                                    percet = procent
-                                  
                                    
                                } else {
                                    let newConsumption = DailyWaterConsumption(totalWaterConsumed: selectedML, date: date)
-                                   count += 1
-                                   let countHistory = HistoryCount.init(count: count)
                                    
                                    let daily: Double = Double(self.dailyRate)
                                    let selected: Double = Double(selectedML)
-                                   
                                    let chislo: Double = daily / selected
-                                  
-                                   let procent = Double( 100 / chislo)
-                                   
+                                  let procent = Double( 100 / chislo)
                                    percet = procent
-                                   
-                                   
-                                   context.insert(countHistory)
                                    context.insert(newConsumption)
                                }
                                
