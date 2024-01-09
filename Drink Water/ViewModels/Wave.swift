@@ -8,15 +8,18 @@
 import Foundation
 import SwiftUI
 
-struct Wave :Shape {
-    var offset: Angle
-    var percent: Double
+// Shape для отображения волны
+struct Wave: Shape {
+    var offset: Angle  // Угол смещения волны
+    var percent: Double // Процент, определяющий высоту волны
     
+    // Анимируемые данные (свойство для анимации)
     var animatableData: Double {
         get { offset.degrees }
         set { offset = Angle(degrees: newValue) }
     }
     
+    // Определяет форму волны
     func path(in rect: CGRect) -> Path {
         var path = Path()
         
@@ -38,6 +41,4 @@ struct Wave :Shape {
         
         return path
     }
-    
-    
 }
