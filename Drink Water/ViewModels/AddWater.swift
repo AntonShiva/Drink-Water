@@ -147,7 +147,9 @@ struct AddWater: View {
                     HStack {
                         // Кнопки уменьшения и увеличения дневной нормы
                         Button {
-                            updateDailyRate(-100)
+                            if self.dailyRate > 0 {
+                                updateDailyRate(-100)
+                            }
                         } label: {
                             Image(systemName: "minus.circle")
                                 .foregroundStyle(.cyan)
@@ -222,7 +224,7 @@ struct AddWater: View {
     
     // Обновление дневной нормы
         private func updateDailyRate(_ value: Int) {
-            if self.dailyRate > 0 {
+           
                 self.dailyRate += value
                 if dailyRateSave.isEmpty {
                     let chislo = DailyRate(dailyRate: self.dailyRate)
@@ -231,7 +233,7 @@ struct AddWater: View {
                     dailyRateSave[0].dailyRate = self.dailyRate
                 }
                 updatePercentage()
-            }
+            
         }
 
 
